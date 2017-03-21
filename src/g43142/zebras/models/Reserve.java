@@ -3,12 +3,10 @@ package g43142.zebras.models;
 /*
  * La classe Reserve représente le plateau de jeu via un tableau 2D.
  * 30 cases en total (5x6).
- */
-import java.util.Arrays;
-/**
- *
  * @author dedec
  */
+import java.util.Arrays;
+
 public class Reserve {
     
     static private final int NBROWS = 4;

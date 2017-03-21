@@ -2,12 +2,9 @@ package g43142.zebras.models;
 
 /*
  * Représente les différents animaux disponibles.
- */
-
-/**
- *
  * @author dedec
  */
+
 public class Animal {
     Species species;
     Color color;

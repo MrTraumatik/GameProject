@@ -1,5 +1,6 @@
 /*
  * Le pointeur d'entrée du jeu.
+ * @author dedec
  */
 package g43142.zebras;
 
@@ -10,10 +11,6 @@ import g43142.zebras.models.Reserve;
 import g43142.zebras.models.Species;
 import java.util.Arrays;
 
-/**
- *
- * @author dedec
- */
 public class Zebras {
     public static void main(String[] args) {
         

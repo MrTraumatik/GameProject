@@ -3,12 +3,9 @@ package g43142.zebras.models;
 /*
  * Structure des coordonnées, simulée via cette classe.
  * La classe représente les coordonnées des cases de la réserve d'animaux.
- */
-
-/**
- *
  * @author dedec
  */
+
 public class Coordinates {
     
     private int row;
