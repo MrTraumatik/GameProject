@@ -2,28 +2,35 @@ package g43142.zebras.models;
 
 /*
  * Enumération des espèces disponibles.
+ * La valeur indiquée représente la capacité de l'animal à attirer
+ * les touristes. Plus elle est élevée, plus l'attirance est forte!
  * @author dedec
  */
 
 public enum Species {
     /**
-     * C'est une gazelle!
+     * c'est une gazelle! 
+     * 6pions, valeur 2
      */
     GAZELLE, 
     /**
-     * c'est un zèbre!
+     * c'est un zèbre! Attraction principale de la réserve.
+     * 5pions, valeur 6
      */
     ZEBRA, 
     /**
-     * c'est le roi de la savane!
+     * c'est un lion!
+     * 1pion, valeur 1
      */
     LION, 
     /**
-     * il a une grande trompe
+     * c'est un éléphant!
+     * 1pion, valeur 5
      */
     ELEPHANT, 
     /**
-     * le croco 
+     * c'est un crocodile!
+     * 2pions, valeur 0
      */
     CROCODILE;
 }

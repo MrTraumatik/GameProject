@@ -9,11 +9,11 @@ package g43142.zebras.models;
 
 public enum Color {
     /**
-     * La couleur verte, comme l'herbe
+     * La couleur verte, représentant le joueur 1
      */
     GREEN, 
     /**
-     * la couleur rouge, comme le sang
+     * la couleur rouge, représentant le joueur 2
      */
     RED;
 }

@@ -37,8 +37,7 @@ public class Animal {
 
     @Override
     public String toString() {
-       // return "Animal{" + "species=" + species + ", color=" + color + '}';
-        return "[" + species +',' + color + "]";
+        return "{" + species +',' + color + "}";
     }
     
     

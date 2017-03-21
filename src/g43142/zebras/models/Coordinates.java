@@ -9,33 +9,31 @@ package g43142.zebras.models;
 public class Coordinates {
     
     private int row;
-
-    /**
-     * Get the value of row
-     * @return the value of row
-     */
-    public int getRow() {
-        return row;
-    }
-
     private int column;
-
-    /**
-     * Get the value of column
-     * @return the value of column
-     */
-    public int getColumn() {
-        return column;
-    }
-
-    /**
+    
+     /**
      * Constructeur de coordonnées
-     * @param row
-     * @param column
+     * @param row indique la ligne
+     * @param column indique la colonne
      */
     public Coordinates(int row, int column) {
         this.row = row;
         this.column = column;
     }
 
+    /**
+     * Getter de la valeur de la ligne
+     * @return la valeur de la ligne
+     */
+    public int getRow() {
+        return row;
+    }
+
+    /**
+     * Getter de la valeur de la colonne
+     * @return la valeur de la colonne
+     */
+    public int getColumn() {
+        return column;
+    }
 }
