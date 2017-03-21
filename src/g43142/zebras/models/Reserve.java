@@ -78,7 +78,11 @@ public class Reserve {
     //public String toString() {        
       //  return "il y a " + getAnimal(pos) + "à la position : " + getAnimal(pos);
     //}
-    
+
+    @Override
+    public String toString(){
+         return Arrays.deepToString(reserve):
+    }
     
 
 
