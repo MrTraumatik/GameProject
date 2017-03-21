@@ -4,7 +4,7 @@ package g43142.zebras.models;
  * La classe Reserve représente le plateau de jeu via un tableau 2D.
  * 30 cases en total (5x6).
  */
-
+import java.util.Arrays;
 /**
  *
  * @author dedec
@@ -81,7 +81,7 @@ public class Reserve {
 
     @Override
     public String toString(){
-         return Arrays.deepToString(reserve):
+         return Arrays.deepToString(reserve);
     }
     
 

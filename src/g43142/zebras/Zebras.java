@@ -41,5 +41,8 @@ public class Zebras {
         System.out.print("la case 0x0 est elle vide ?");
         System.out.println(reserve.isFree(new Coordinates(0, 0)));
         
+        
+        
+        System.out.println(reserve);
     }
 }
