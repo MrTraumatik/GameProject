@@ -20,7 +20,9 @@ public class Zebras {
         //possible de le faire sans la couleur ??
         Animal unAnimal = new Animal(Species.GAZELLE, Color.GREEN);
         Coordinates uneCoordonnée = new Coordinates(1, 3);  
-        reserve.put( unAnimal, uneCoordonnée);
+        if(reserve.isFree(uneCoordonnée)){
+            reserve.put( unAnimal, uneCoordonnée);
+        }       
         
         System.out.println("--------------");
         String posi = reserve.getCoordinates(uneCoordonnée);
