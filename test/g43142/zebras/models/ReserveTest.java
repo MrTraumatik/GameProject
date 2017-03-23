@@ -135,6 +135,8 @@ public class ReserveTest {
     
     /**
      * Test of getAnimal method, of class Reserve.
+     * compare if the animal put in the case [0, 0] is the same as the animal
+     * from the method getAnimal, which is gazelle green
      */
     @Test
     public void testGetAnimal() {
@@ -151,6 +153,7 @@ public class ReserveTest {
     
     /**
      * Test 2 of getAnimal method, of class Reserve.
+     * return an error because coordinates are out of the reserve
      */
     @Test (expected = ArrayIndexOutOfBoundsException.class)
     public void testGetAnimal2() {
