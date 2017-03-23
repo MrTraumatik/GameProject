@@ -1,39 +1,38 @@
 package g43142.zebras.models;
 
 /*
- * Structure des coordonnées, simulée via cette classe.
- * La classe représente les coordonnées des cases de la réserve d'animaux.
+ * Coordinate's structure, with row and columns
  * @author dedec
  */
 
 public class Coordinates {
     
-    private int row;
-    private int column;
+    private final int ROW;
+    private final int COLUMN;
     
      /**
-     * Constructeur de coordonnées
-     * @param row indique la ligne
-     * @param column indique la colonne
+     * Constructor of coordinates
+     * @param row the row of the case
+     * @param column the column of the case
      */
     public Coordinates(int row, int column) {
-        this.row = row;
-        this.column = column;
+        this.ROW = row;
+        this.COLUMN = column;
     }
 
     /**
-     * Getter de la valeur de la ligne
-     * @return la valeur de la ligne
+     * Getter of the value of the row
+     * @return the value of the row
      */
     public int getRow() {
-        return row;
+        return ROW;
     }
 
     /**
-     * Getter de la valeur de la colonne
-     * @return la valeur de la colonne
+     * Getter of the value of the column
+     * @return the value of the column
      */
     public int getColumn() {
-        return column;
+        return COLUMN;
     }
 }

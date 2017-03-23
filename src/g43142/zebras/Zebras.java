@@ -1,5 +1,5 @@
 /*
- * Le pointeur d'entrée du jeu.
+ * Main method of the game project
  * @author dedec
  */
 package g43142.zebras;
@@ -20,10 +20,8 @@ public class Zebras {
         //possible de le faire sans la couleur ??
         Animal unAnimal = new Animal(Species.GAZELLE, Color.GREEN);
         Coordinates uneCoordonnée = new Coordinates(1, 3);  
-        if(reserve.isFree(uneCoordonnée)){
-            reserve.put( unAnimal, uneCoordonnée);
-        }       
-        
+        reserve.put( unAnimal, uneCoordonnée);
+             
         System.out.println("--------------");
         String posi = reserve.getCoordinates(uneCoordonnée);
         System.out.println(reserve.getAnimal(uneCoordonnée)+ posi);

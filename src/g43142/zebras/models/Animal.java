@@ -1,7 +1,7 @@
 package g43142.zebras.models;
 
 /*
- * Représente les différents animaux disponibles.
+ * Class for creating and changing attributs of animals
  * @author dedec
  */
 
@@ -10,9 +10,9 @@ public class Animal {
     Color color;
 
     /**
-     * Constructeur de la classe
-     * @param species désigne l'espèce
-     * @param color désigne le joueur à qui elle appartient
+     * Constructor of an animal
+     * @param species the specie of the animal
+     * @param color the color, to specify to which player the animal belongs
      */
     public Animal(Species species, Color color) {
         this.species = species;
@@ -20,16 +20,16 @@ public class Animal {
     }
 
     /**
-     * Getteur pour l'espèce
-     * @return
+     * Getter of the specie
+     * @return the specie of the animal
      */
     public Species getSpecies() {
         return species;       
     }
 
     /**
-     * Getteur pour la couleur
-     * @return
+     * Getter of the color
+     * @return the color of the animal
      */
     public Color getColor() {
         return color;

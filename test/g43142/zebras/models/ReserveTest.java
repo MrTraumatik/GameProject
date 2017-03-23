@@ -1,5 +1,5 @@
 /*
- * Test des méthodes de la classe Reserve.java
+ * Test of methods from Reserve.java class
  * @author g43142
  */
 package g43142.zebras.models;
@@ -9,9 +9,9 @@ import static org.junit.Assert.*;
 
 public class ReserveTest {
        
-    
     /**
      * Test of isFree method, of class Reserve.
+     * return true if the case [0, 0] has NOT an animal.
      */
     @Test
     public void testIsFree() {
@@ -28,6 +28,7 @@ public class ReserveTest {
     
     /**
      * Test 2 of isFree method, of class Reserve.
+     * return true if case [4, 5] has NOT an animal.
      */
     @Test
     public void testIsFree2() {
@@ -44,6 +45,7 @@ public class ReserveTest {
     
     /**
      * Test 3 of isFree method, of class Reserve.
+     * return an error if the case is outside the board game
      */
     @Test(expected = ArrayIndexOutOfBoundsException.class)
     public void testIsFree3() {
@@ -53,12 +55,13 @@ public class ReserveTest {
         Reserve instance = new Reserve();
         Animal animal = new Animal(Species.GAZELLE, Color.GREEN);
         instance.put(animal, pos);
- 
-        //TESTER UNE ERREUR   
+        
+         
     }
     
     /**
      * Test 4 of isFree method, of class Reserve.
+     * return false because case [0, 0] has an animal (green gazelle)
      */
     @Test
     public void testIsFree4() {
@@ -77,6 +80,7 @@ public class ReserveTest {
     
     /**
      * Test 5 of isFree method, of class Reserve.
+     * return false because case [0, 0] has an animal (red lion)
      */
     @Test
     public void testIsFree5() {
@@ -91,14 +95,11 @@ public class ReserveTest {
         
         assertEquals(expResult, result);
 
-    }
-    
-    
-    
-    
+    }  
 
     /**
      * Test of put method, of class Reserve.
+     * test pass if the animal has been put in the case
      */
     @Test
     public void testPut() {
@@ -110,10 +111,25 @@ public class ReserveTest {
         instance.put(animal, pos);
         Animal animalExpected = instance.getAnimal(pos);
         
-        assertEquals(animalExpected, animal);
+        assertEquals(animalExpected, animal);  
+
+    }
+    
+    /**
+     * Test 2 of put method, of class Reserve.
+     * return an error because the case is out of the board game
+     */
+    @Test (expected = ArrayIndexOutOfBoundsException.class)
+    public void testPut2() {
+        System.out.println("put Method Test 2");
         
+        Coordinates pos = new Coordinates(10, 10);
+        Reserve instance = new Reserve();
+        Animal animal = new Animal(Species.GAZELLE, Color.GREEN);
+        instance.put(animal, pos);
+        Animal animalExpected = instance.getAnimal(pos);
         
-        
+        assertEquals(animalExpected, animal);  
 
     }
     
@@ -131,23 +147,22 @@ public class ReserveTest {
         Animal result = instance.getAnimal(pos);
         
         assertEquals(animal, result);
-
-    }
-
-    /**
-     * Test of getCoordinates method, of class Reserve.
-     */
-    @Test
-    public void testGetCoordinates() {
-        System.out.println("getCoordinates Method Test");
-        
-        Coordinates pos = new Coordinates(0, 0);
-        Reserve instance = new Reserve();
-        String expResult = "[1][1]";
-        String result = instance.getCoordinates(pos);
-        
-        assertEquals(expResult, result);
-
     }
     
+    /**
+     * Test 2 of getAnimal method, of class Reserve.
+     */
+    @Test (expected = ArrayIndexOutOfBoundsException.class)
+    public void testGetAnimal2() {
+        System.out.println("getAnimal Method Test 2");
+        
+        Coordinates pos = new Coordinates(13, 23);
+        Reserve instance = new Reserve();
+        Animal animal = new Animal(Species.GAZELLE, Color.GREEN);
+        instance.put(animal, pos);
+        Animal result = instance.getAnimal(pos);
+        
+        assertEquals(animal, result);
+    }
+   
 }
