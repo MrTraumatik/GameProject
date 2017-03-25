@@ -7,6 +7,7 @@ package g43142.zebras;
 import g43142.zebras.models.Animal;
 import g43142.zebras.models.Color;
 import g43142.zebras.models.Coordinates;
+import g43142.zebras.models.ImpalaJones;
 import g43142.zebras.models.Pieces;
 import g43142.zebras.models.Reserve;
 import g43142.zebras.models.Species;
@@ -37,19 +38,43 @@ public class Zebras {
         System.out.println(reserve);
         System.out.println("*--------------------------*");
         
-        
-        
+        //création du stock des pièces
         Pieces p = new Pieces();
-        System.out.println(p.toString());
+        Animal exempleAni = p.getAnimal(Color.GREEN, Species.GAZELLE);
+        Coordinates exempleCoord = new Coordinates(3, 5);
+        reserve.put(exempleAni, exempleCoord);
         
+        Animal autreAni = p.getAnimal(Color.RED, Species.LION);
+        Coordinates autreCoord = new Coordinates(0,1);
+        reserve.put(autreAni, autreCoord);
+        System.out.println("*------------------------------*");
+        System.out.println(reserve);
+        System.out.println("*------------------------------*");
+        
+        
+        System.out.println(p.toString());
         System.out.println(p.getAnimal(Color.GREEN, Species.GAZELLE));
-        
         System.out.println(p.toString());
-        
         System.out.println(p.hasAvailable());
-        
         System.out.println(p.getNbAnimal(Color.GREEN, Species.GAZELLE));
         
+        
+        System.out.println("--------");
+        reserve.put(autreAni, (new Coordinates(0, 0)));
+        reserve.put(autreAni, (new Coordinates(0, 1)));
+        reserve.put(autreAni, (new Coordinates(0, 2)));
+        reserve.put(autreAni, (new Coordinates(0, 3)));
+        reserve.put(autreAni, (new Coordinates(0, 4)));
+        reserve.put(autreAni, (new Coordinates(0, 5)));
+        
+        System.out.println(reserve);
+        
+        System.out.println(reserve.freeRow(new Coordinates(0, 0)));
+        
+        System.out.println("++++++++++++++++++++++++");
+        
+        ImpalaJones I = new ImpalaJones();
+        System.out.println(I.findFirst(reserve));
 
         
     }

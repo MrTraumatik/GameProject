@@ -77,4 +77,39 @@ public class Reserve {
          //le replaceAll pour aller à la ligne à chaque fin de lignes du tableau
          //replaceAll change les '],' en ']\n'
     }
+    
+    
+    
+    public boolean freeColumn(Coordinates pos){
+        int nbNull = 0;
+        int row = 0;
+        while(nbNull==0 && row<4){
+            if(reserve[row][pos.getColumn()]==null){
+                nbNull=nbNull+1;
+            }
+            row++;
+        }
+        return nbNull!=0;
+    }
+   
+    public boolean freeRow(Coordinates pos){
+        int nbNull = 0;
+        int col = 0;
+        while(nbNull==0 && col<5){
+            if(reserve[pos.getRow()][col]==null){
+                nbNull=nbNull+1;
+            }
+            col++;
+        }
+        return nbNull!=0;
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+    
 }
