@@ -7,8 +7,10 @@ package g43142.zebras;
 import g43142.zebras.models.Animal;
 import g43142.zebras.models.Color;
 import g43142.zebras.models.Coordinates;
+import g43142.zebras.models.Pieces;
 import g43142.zebras.models.Reserve;
 import g43142.zebras.models.Species;
+import java.util.List;
 
 public class Zebras {
     public static void main(String[] args) {
@@ -34,6 +36,19 @@ public class Zebras {
         System.out.println("           RESERVE");
         System.out.println(reserve);
         System.out.println("*--------------------------*");
+        
+        
+        
+        Pieces p = new Pieces();
+        System.out.println(p.toString());
+        
+        System.out.println(p.getAnimal(Color.GREEN, Species.GAZELLE));
+        
+        System.out.println(p.toString());
+        
+        System.out.println(p.hasAvailable());
+        
+        System.out.println(p.getNbAnimal(Color.GREEN, Species.GAZELLE));
         
 
         

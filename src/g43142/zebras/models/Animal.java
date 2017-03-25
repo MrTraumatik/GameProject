@@ -34,10 +34,22 @@ public class Animal {
     public Color getColor() {
         return color;
     }
-
+    
+    //ANSI escape codes:
+    //permet d'utiliser des couleurs dans l'output.
+    public static final String ANSI_RESET = "\u001B[0m";
+    public static final String ANSI_RED = "\u001B[31m";
+    public static final String ANSI_GREEN = "\u001B[32m";
+        
     @Override
-    public String toString() {
-        return "{" + species +',' + color + "}";
+    public String toString() {       
+        String finalString;
+        if(color==Color.GREEN){
+            finalString = ANSI_GREEN + species + ANSI_RESET;
+        }else{
+            finalString = ANSI_RED + species + ANSI_RESET;
+        }
+        return finalString;
     }
     
     
