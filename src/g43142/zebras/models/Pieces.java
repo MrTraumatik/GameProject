@@ -26,11 +26,11 @@ public class Pieces {
     public Pieces() {
         animals = new ArrayList<Animal>();
         
-        Animal gg = new Animal(Species.GAZELLE, Color.GREEN);
-        Animal cg = new Animal(Species.CROCODILE, Color.GREEN);
-        Animal eg = new Animal(Species.ELEPHANT, Color.GREEN);
-        Animal lg = new Animal(Species.LION, Color.GREEN);
-        Animal zg = new Animal(Species.ZEBRA, Color.GREEN);
+        Animal gg = new Animal(Species.G, Color.GREEN);
+        Animal cg = new Animal(Species.C, Color.GREEN);
+        Animal eg = new Animal(Species.E, Color.GREEN);
+        Animal lg = new Animal(Species.L, Color.GREEN);
+        Animal zg = new Animal(Species.Z, Color.GREEN);
         
         int n = 0;
         while(n<6){
@@ -50,11 +50,11 @@ public class Pieces {
         animals.add(eg);
         animals.add(lg);
         
-        Animal gr = new Animal(Species.GAZELLE, Color.RED);
-        Animal cr = new Animal(Species.CROCODILE, Color.RED);
-        Animal er = new Animal(Species.ELEPHANT, Color.RED);
-        Animal lr = new Animal(Species.LION, Color.RED);
-        Animal zr = new Animal(Species.ZEBRA, Color.RED);
+        Animal gr = new Animal(Species.G, Color.RED);
+        Animal cr = new Animal(Species.C, Color.RED);
+        Animal er = new Animal(Species.E, Color.RED);
+        Animal lr = new Animal(Species.L, Color.RED);
+        Animal zr = new Animal(Species.Z, Color.RED);
         
         n = 0;
         while(n<6){

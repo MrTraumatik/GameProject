@@ -35,4 +35,12 @@ public class Coordinates {
     public int getColumn() {
         return COLUMN;
     }
+
+    @Override
+    public String toString() {
+        return "[" +ROW + "][" + COLUMN + ']';
+    }
+    
+    
+    
 }

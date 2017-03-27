@@ -9,23 +9,28 @@ package g43142.zebras.models;
 
 public enum Species {
     /**
+     * Gazelle
      * 6 pawns, value 2
      */
-    GAZELLE, 
+    G, 
     /**
+     * Zebra
      * 5 pawn, value 6
      */
-    ZEBRA, 
+    Z, 
     /**
+     * Lion
      * 1 pawn, value 1
      */
-    LION, 
+    L, 
     /**
+     * Elephant
      * 1 pawn, value 5
      */
-    ELEPHANT, 
+    E, 
     /**
+     * Crocodile
      * 2 pawns, value 0
      */
-    CROCODILE;
+    C;
 }

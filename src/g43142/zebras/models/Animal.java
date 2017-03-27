@@ -1,9 +1,12 @@
 package g43142.zebras.models;
 
+import java.awt.Graphics;
+
 /*
  * Class for creating and changing attributs of animals
  * @author dedec
  */
+
 
 public class Animal {
     Species species;
@@ -49,6 +52,9 @@ public class Animal {
         }else{
             finalString = ANSI_RED + species + ANSI_RESET;
         }
+        //String s = finalString.substring(0, 1);
+        //String s = String.valueOf(finalString.charAt(10));
+        //Graphics g = g.setColor(java.awt.Color.red);
         return finalString;
     }
     

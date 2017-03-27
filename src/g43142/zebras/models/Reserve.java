@@ -30,27 +30,49 @@ public class Reserve {
         return reserve[pos.getRow()][pos.getColumn()]== null;
     }
     
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     /**
      * Insert the animal in the case
      * @param animal the animal to put in
      * @param pos the position where the animal need to be
      */
     public void put(Animal animal, Coordinates pos){
-        try{
-            //si la coordonnée de la case n'est pas dans la réserve 
-            // ET qu'il n'y a pas d'animal déjà présent sur cette case.
-            if((pos.getColumn()<0)&& (pos.getColumn()>NBCOLS)
-                    &&(pos.getRow()<0)&&(pos.getRow()>NBROWS) ){
-                throw new ArrayIndexOutOfBoundsException () ;
-            }
-            if(isFree(pos)){
-                reserve[pos.getRow()][pos.getColumn()]= animal;
+        //si la coordonnée de la case n'est pas dans la réserve 
+        // ET qu'il n'y a pas d'animal déjà présent sur cette case.
+        if((pos.getColumn()<0)&& (pos.getColumn()>NBCOLS)
+                &&(pos.getRow()<0)&&(pos.getRow()>NBROWS)){
+            throw new ArrayIndexOutOfBoundsException () ;
+        }
+        if(isFree(pos)){
+            reserve[pos.getRow()][pos.getColumn()]= animal;
            
-            }            
-        }catch(NullPointerException e){
-            System.out.println("coordonnée est null");   
-        }         
+        }            
+                 
     }
+    
+    public boolean isInside(Coordinates pos){
+        return (pos.getColumn()>0)&& (pos.getColumn()<NBCOLS)
+                &&(pos.getRow()>0)&&(pos.getRow()<NBROWS);
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     
     /**
      * Getter for the animal
@@ -61,6 +83,9 @@ public class Reserve {
         return reserve[pos.getRow()][pos.getColumn()];
     }
     
+    
+
+    
     /**
      * Extra method to print the coordinates as a String 
      * @param pos the row and the column
@@ -70,16 +95,32 @@ public class Reserve {
         return "[" + (pos.getRow()+1) + "]" + "[" + (pos.getColumn()+1) + "]";
     } 
 
+
+    
     @Override
     public String toString(){
-         return Arrays.deepToString(reserve).replaceAll("],", "]\n");
+         String chaine="";
+        
+        for(int i =0;i<NBROWS;i++){
+            for(int j=0;j<NBCOLS;j++){
+                Animal ani = getAnimal(new Coordinates(i, j));
+                if(ani!=null){
+                    chaine = chaine + " " + ani.toString();
+                }else{
+                    chaine = chaine + " -";
+                }
+            }
+            chaine = chaine + "\n";
+        }
+        
+        return chaine;
+
+         //return Arrays.deepToString(reserve).replaceAll("],", "]\n");
          //le deepToString pour afficher le tableau en entier sur une ligne
          //le replaceAll pour aller à la ligne à chaque fin de lignes du tableau
          //replaceAll change les '],' en ']\n'
     }
-    
-    
-    
+
     public boolean freeColumn(Coordinates pos){
         int nbNull = 0;
         int row = 0;
