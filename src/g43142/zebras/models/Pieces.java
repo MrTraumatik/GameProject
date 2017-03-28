@@ -19,7 +19,7 @@ public class Pieces {
      List<Animal> animals;
 
     /**
-     *
+     *Constructor of the list Pieces, containing all the animals avalaible
      */
     public Pieces() {
         animals = new ArrayList<>();
@@ -80,10 +80,10 @@ public class Pieces {
     }
     
     /**
-     *
-     * @param color
-     * @param species
-     * @return
+     *Get an animal from the list, and remove it
+     * @param color the color of the animal
+     * @param species the animal's specie
+     * @return the animal that will be remove
      */
     public Animal getAnimal(Color color, Species species){
         
@@ -97,18 +97,18 @@ public class Pieces {
     }
 
     /**
-     *
-     * @return
+     * check if the list is empty, meaning no animals in it
+     * @return true if it's empty
      */
     public boolean hasAvailable(){
         return animals.isEmpty();
     }
     
     /**
-     *
-     * @param color
-     * @param species
-     * @return
+     * get number of occurences of an animal in the list
+     * @param color the color of the animal
+     * @param species the animal's specie
+     * @return the number of animal left in the list
      */
     public long getNbAnimal(Color color, Species species){
         Predicate<Animal> predicat = animals -> animals.getColor().equals(color);
@@ -120,8 +120,8 @@ public class Pieces {
     }
 
     /**
-     *
-     * @return
+     *Override of toString Method
+     * @return string like : "pieces {animal}"
      */
     @Override
     public String toString() {

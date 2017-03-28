@@ -1,5 +1,4 @@
 package g43142.zebras.models;
-
 /*
  * Creation of the board game with a 2D Array
  * The reserve is surrounded by a trail where Impala Jones moves 
@@ -8,10 +7,6 @@ package g43142.zebras.models;
  */
 import java.util.Arrays;
 
-/**
- *
- * @author dedec
- */
 public class Reserve {
     
     static private final int NBROWS = 5;
@@ -33,17 +28,7 @@ public class Reserve {
     public boolean isFree(Coordinates pos){
         return reserve[pos.getRow()][pos.getColumn()]== null;
     }
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
+
     /**
      * Insert the animal in the case
      * @param animal the animal to put in
@@ -64,24 +49,14 @@ public class Reserve {
     }
     
     /**
-     *
-     * @param pos
-     * @return
+     *Check if the coordinate is inside the reserve
+     * @param pos row and column of the case that will be checked
+     * @return true if it's inside the reserve
      */
     public boolean isInside(Coordinates pos){
         return (pos.getColumn()>0)&& (pos.getColumn()<NBCOLS)
                 &&(pos.getRow()>0)&&(pos.getRow()<NBROWS);
     }
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     
     /**
      * Getter for the animal
@@ -91,9 +66,6 @@ public class Reserve {
     public Animal getAnimal(Coordinates pos){
         return reserve[pos.getRow()][pos.getColumn()];
     }
-    
-    
-
     
     /**
      * Extra method to print the coordinates as a String 
@@ -105,7 +77,9 @@ public class Reserve {
     } 
 
     /**
-     *
+     *Override of toString Method
+     * change the print by creating one big string of - if there's no animal
+     * and the first letter of the animal if he's on the case
      * @return
      */
     @Override
@@ -125,16 +99,12 @@ public class Reserve {
         }
         
         return chaine;
-
-         //return Arrays.deepToString(reserve).replaceAll("],", "]\n");
-         //le deepToString pour afficher le tableau en entier sur une ligne
-         //le replaceAll pour aller à la ligne à chaque fin de lignes du tableau
-         //replaceAll change les '],' en ']\n'
     }
 
     /**
-     *
-     * @param pos
+     *Check if the column of the coordinate has at least one free case
+     * where an animal can be placed
+     * @param pos the position .........................
      * @return
      */
     public boolean freeColumn(Coordinates pos){
@@ -164,14 +134,6 @@ public class Reserve {
             col++;
         }
         return nbNull!=0;
-    }
-    
-    
-    
-    
-    
-    
-    
-    
+    } 
     
 }
