@@ -12,7 +12,7 @@ import java.util.function.Predicate;
 
 
 /**
- *
+ *Creation of the list of all animals avalaible for the 2 players
  * @author dedec
  */
 public class Pieces {

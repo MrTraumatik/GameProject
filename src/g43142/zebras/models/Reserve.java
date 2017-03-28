@@ -6,6 +6,7 @@ package g43142.zebras.models;
  * @author dedec
  */
 import java.util.Arrays;
+import java.util.List;
 
 public class Reserve {
     
@@ -104,8 +105,8 @@ public class Reserve {
     /**
      *Check if the column of the coordinate has at least one free case
      * where an animal can be placed
-     * @param pos the position .........................
-     * @return
+     * @param pos the position with the row and the column
+     * @return true if the column has at least one free spot
      */
     public boolean freeColumn(Coordinates pos){
         int nbNull = 0;
@@ -120,9 +121,10 @@ public class Reserve {
     }
    
     /**
-     *
-     * @param pos
-     * @return
+     *Check if the row of the coordinate has at least one free case
+     * where an animal can be placed
+     * @param pos the position with the row and the column
+     * @return true if the row has at least one free spot
      */
     public boolean freeRow(Coordinates pos){
         int nbNull = 0;
@@ -135,5 +137,14 @@ public class Reserve {
         }
         return nbNull!=0;
     } 
+    
+    /**
+     *Return a list of all case next to the position (up, down, left and right)
+     * @param pos the row and the column
+     * @return the list of case next to the position
+     */
+    public List<Coordinates> getAdjacents(Coordinates pos){
+        
+    }
     
 }

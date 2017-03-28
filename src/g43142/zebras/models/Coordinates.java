@@ -44,7 +44,5 @@ public class Coordinates {
     public String toString() {
         return "[" +ROW + "][" + COLUMN + ']';
     }
-    
-    
-    
+  
 }

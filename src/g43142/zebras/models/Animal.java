@@ -7,13 +7,10 @@ import java.awt.Graphics;
  * @author dedec
  */
 
-/**
- *
- * @author dedec
- */
 public class Animal {
     private Species species;
     private Color color;
+    private AnimalState state;
 
     /**
      * Constructor of an animal
@@ -75,6 +72,22 @@ public class Animal {
         }  
         return ani;  
     }
+    
+    /**
+     *return the state of the animal (run, hidden, rest)
+     * @return the state of the animal
+     */
+    public AnimalState getState() {
+        return state;
+    }
+     
+    /**
+     *
+     * @param other
+     */
+    public void action(Animal other){
+         
+     }
     
     
 }

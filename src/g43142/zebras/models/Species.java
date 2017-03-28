@@ -7,12 +7,6 @@ package g43142.zebras.models;
  * @author dedec
  */
 
-/**
- *
- * @author dedec
- */
-
-
 public enum Species {
     /**
      * Gazelle

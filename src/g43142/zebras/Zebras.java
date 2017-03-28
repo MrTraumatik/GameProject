@@ -14,29 +14,14 @@ import g43142.zebras.models.Species;
 import java.util.List;
 
 public class Zebras {
+
     public static void main(String[] args) {
         
-        //instancie une reserve        
+        //instancie une reserve + place gazelle [2,4]     
         Reserve reserve = new Reserve();
-        
-        //place une gazelle : (2, 4)
-        //possible de le faire sans la couleur ??
         Animal unAnimal = new Animal(Species.GAZELLE, Color.GREEN);
         Coordinates uneCoordonnée = new Coordinates(1, 3);  
-        reserve.put( unAnimal, uneCoordonnée);
-             
-        System.out.println("--------------");
-        System.out.println(reserve.getAnimal(uneCoordonnée)+uneCoordonnée.toString());
-        System.out.println("--------------");
-        
-        //simple utilisation de l'enum Species
-        System.out.println("animal : " + Species.GAZELLE);
-                
-        System.out.println("*-------------------*");
-        System.out.println("   RESERVE");
-        System.out.println(reserve);
-        System.out.println("*-------------------*");
-        
+        reserve.put( unAnimal, uneCoordonnée);        
         
         //création du stock des pièces
         Pieces p = new Pieces();
@@ -48,7 +33,7 @@ public class Zebras {
         Coordinates autreCoord = new Coordinates(0,1);
         reserve.put(autreAni, autreCoord);
         System.out.println("*-------------------*");
-        System.out.println("   RESERVE 2");
+        System.out.println("   RESERVE ");
         System.out.println(reserve);
         System.out.println("*-------------------*");
         
@@ -69,11 +54,8 @@ public class Zebras {
         reserve.put(autreAni, (new Coordinates(0, 5)));
         
         System.out.println(reserve);
-        System.out.println("test methode res.freerow(0.0)");
-        System.out.println(reserve.freeRow(new Coordinates(0, 0)));
-        System.out.println(reserve.freeRow(new Coordinates(2, 0)));
-        System.out.println(reserve.freeRow(new Coordinates(1, 0)));
         
+        //problème avec la méthpde findFirst
         ImpalaJones I = new ImpalaJones();
         System.out.println(I.findFirst(reserve));
         

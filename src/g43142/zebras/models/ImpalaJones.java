@@ -1,7 +1,7 @@
 package g43142.zebras.models;
 
 /**
- *
+ *Creation of Impala Jones
  * @author Richard
  */
 public class ImpalaJones {

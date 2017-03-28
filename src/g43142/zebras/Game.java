@@ -1,15 +1,15 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package g43142.zebras;
 
+import g43142.zebras.models.Animal;
+import g43142.zebras.models.Color;
+import g43142.zebras.models.Coordinates;
 import g43142.zebras.models.GameStatus;
 import g43142.zebras.models.ImpalaJones;
 import g43142.zebras.models.Pieces;
 import g43142.zebras.models.Player;
 import g43142.zebras.models.Reserve;
+import g43142.zebras.models.Species;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -24,7 +24,17 @@ public class Game {
     private GameStatus status;
     private Player currentPlayer;
 
-    public Game(List<Player> players, Reserve reserve, ImpalaJones impala, Pieces pieces, GameStatus status, Player currentPlayer) {
+    /**
+     *
+     * @param players
+     * @param reserve
+     * @param impala
+     * @param pieces
+     * @param status
+     * @param currentPlayer
+     */
+    public Game(List<Player> players, Reserve reserve, ImpalaJones impala,
+            Pieces pieces, GameStatus status, Player currentPlayer) {
         this.players = players;
         this.reserve = reserve;
         this.impala = impala;
@@ -32,5 +42,152 @@ public class Game {
         this.status = status;
         this.currentPlayer = currentPlayer;
     }
+    
+    /**
+     *Start a match and reset attributes.
+     */
+    public void start(){
+        players = new ArrayList<>();
+        reserve = new Reserve();
+        impala = new ImpalaJones();
+        pieces = new Pieces();      
+        
+    }
+    
+    /**
+     *Set Impala Jones first position.
+     *
+     * @param position of Impala Jones at the beginning of game
+     * @throws GameException if game's status isn't GameStatus.INIT.
+     */
+    public void setImpalaJonesFirstPosition(int position){
+        if(this.status!=status.INIT){
+            throw new GameException();
+        }else{
+            impala.init(position);
+        }
+    }
+    
+    /**
+     *Put an animal in the Board. Put an animal of the given species for the
+     * current player.
+     *
+     * @param position position on the board
+     * @param species species of an animal
+     * @throws GameException if
+     * game's status isn't Status.ANIMAL
+     * or impala isn't on the same row or column
+     * or that the position is not free
+     * or the current player doesn't have that a tile of that species to play anymore
+     */
+    public void putAnimal(Coordinates position, Species species){
+        Color color = currentPlayer.getColor();
+        if(this.status!=status.ANIMAL || !impala.valid(position) ||
+                !reserve.isFree(position) || pieces.getNbAnimal(color, species)==0){
+            throw new GameException();
+        }else{
+            Animal animal = new Animal(species, color);
+            reserve.put(animal, position);
+        }
+    }
+    
+    /**
+     *Move Impala Jones some steps forward.
+     *
+     * @param distance number of step
+     * @throws GameException if
+     * game's status isn't Status.IMPALA
+     * or impala will arrive on a full row or column
+     * or the distance is too large
+     */
+    public void moveImpalaJones(int distance){
+        if(this.status!=status.IMPALA || !impala.checkMove(reserve, distance) ||
+                impala.findFirst(reserve)>3){
+            throw new GameException();
+        }else{
+            impala.move(distance);
+        }
+    }
+    
+    /**
+     *return true if the game is over by checking if any column is free
+     * @return true if the game is over
+     */
+    public boolean isOver(){
+        int row=0;
+        int col=0;
+        boolean itsOK=true;
+  
+        while(itsOK && row<5 && col<6){
+            Coordinates pos = new Coordinates(row, col);
+            itsOK = !reserve.freeColumn(pos);
+            row++;
+            col++;
+        }
+        return itsOK;
+    }
+    
+    /**
+     *return the state of the game
+     * @return the state of the game
+     */
+    public GameStatus getStatus(){
+        return status;
+    }
+    
+    /**
+     *return the current player
+     * @return the current player
+     */
+    public Color getCurrentColor(){
+        return currentPlayer.getColor();
+    }
+    
+    /**
+     *return the list of all player
+     * @return the list of all player
+     */
+    public List<Player> getPlayers(){
+        return players;
+    }
+    
+    /**
+     *return the reserve
+     * @return the reserve
+     */
+    public Reserve getReserve(){
+        return reserve;
+    }
+    
+    /**
+     *Return the amount of animals of the specified species that the curent
+     * player can put in the reserve.
+     *
+     * @param species of the animal searched
+     * @return the amount of animals of the specified species for the current
+     * player, left in the stock.
+     */
+    public int getNb(Species species){
+        return pieces.getNbAnimal(currentPlayer.getColor(), species);
+    }
+    
+    /**
+     *return impala jones
+     * @return impala jones
+     */
+    public ImpalaJones getImpalaJones(){
+        return impala;
+    }
+    
+    /**
+     * Get the score of the player of the given color.
+     *
+     * @param color the color of the player
+     * @return the score of the player of the given color.
+     */
+    public int getScore(Color color){
+        
+    }
+    
     
 }

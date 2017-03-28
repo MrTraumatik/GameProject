@@ -31,7 +31,6 @@ public interface Model {
      * Set Impala Jones first position.
      *
      * @param position of Impala Jones at the beginning of game
-     * @throws GameException if game's status isn't GameStatus.INIT.
      */
     void setImpalaJonesFirstPosition(int position);
 
@@ -41,14 +40,6 @@ public interface Model {
      *
      * @param position position on the board
      * @param species species of an animal
-     * @throws GameException if
-     * <ul>
-     * <li>game's status isn't Status.ANIMAL</li>
-     * <li>or Impala Jones isn't on the the same row or column</li>
-     * <li>or that position is not free</li>
-     * <li>or the current player doesn't have that a tile of that species to
-     * play anymore</li>
-     * </ul>
      */
     void putAnimal(Coordinates position, Species species);
 
