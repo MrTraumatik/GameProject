@@ -7,10 +7,13 @@ import java.awt.Graphics;
  * @author dedec
  */
 
-
+/**
+ *
+ * @author dedec
+ */
 public class Animal {
-    Species species;
-    Color color;
+    private Species species;
+    private Color color;
 
     /**
      * Constructor of an animal
@@ -40,22 +43,37 @@ public class Animal {
     
     //ANSI escape codes:
     //permet d'utiliser des couleurs dans l'output.
+
+    /**
+     *Reset color (black), use after printing with a color to get back to black.
+     */
     public static final String ANSI_RESET = "\u001B[0m";
+
+    /**
+     *Red color code (ANSI) 
+     */
     public static final String ANSI_RED = "\u001B[31m";
+
+    /**
+     *Green color code (ANSI)
+     */
     public static final String ANSI_GREEN = "\u001B[32m";
         
+    /**
+     *Override of toString Method
+     * print in color de fisrt letter of an animal with his color
+     * @return string of the first char of the animal's name
+     */
     @Override
     public String toString() {       
-        String finalString;
+        String string = species.toString();
+        String ani= String.valueOf(string.charAt(0));
         if(color==Color.GREEN){
-            finalString = ANSI_GREEN + species + ANSI_RESET;
+            ani = ANSI_GREEN + ani + ANSI_RESET;            
         }else{
-            finalString = ANSI_RED + species + ANSI_RESET;
-        }
-        //String s = finalString.substring(0, 1);
-        //String s = String.valueOf(finalString.charAt(10));
-        //Graphics g = g.setColor(java.awt.Color.red);
-        return finalString;
+            ani = ANSI_RED + ani + ANSI_RESET;
+        }  
+        return ani;  
     }
     
     

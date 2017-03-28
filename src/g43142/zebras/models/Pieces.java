@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package g43142.zebras.models;
 
 import java.util.ArrayList;
@@ -23,61 +18,37 @@ import java.util.function.Predicate;
 public class Pieces {
      List<Animal> animals;
 
+    /**
+     *
+     */
     public Pieces() {
-        animals = new ArrayList<Animal>();
+        animals = new ArrayList<>();
         
-        Animal gg = new Animal(Species.G, Color.GREEN);
-        Animal cg = new Animal(Species.C, Color.GREEN);
-        Animal eg = new Animal(Species.E, Color.GREEN);
-        Animal lg = new Animal(Species.L, Color.GREEN);
-        Animal zg = new Animal(Species.Z, Color.GREEN);
+        Animal gg = new Animal(Species.GAZELLE, Color.GREEN);
+        Animal cg = new Animal(Species.CROCODILE, Color.GREEN);
+        Animal eg = new Animal(Species.ELEPHANT, Color.GREEN);
+        Animal lg = new Animal(Species.LION, Color.GREEN);
+        Animal zg = new Animal(Species.ZEBRA, Color.GREEN);
         
-        int n = 0;
-        while(n<6){
-            animals.add(gg);
-            n++;
-        }
-        n = 0;
-        while(n<5){
-            animals.add(zg);
-            n++;
-        }
-        n = 0;
-        while(n<2){
-            animals.add(cg);
-            n++;
-        }
-        animals.add(eg);
-        animals.add(lg);
+        Animal gr = new Animal(Species.GAZELLE, Color.RED);
+        Animal cr = new Animal(Species.CROCODILE, Color.RED);
+        Animal er = new Animal(Species.ELEPHANT, Color.RED);
+        Animal lr = new Animal(Species.LION, Color.RED);
+        Animal zr = new Animal(Species.ZEBRA, Color.RED);
         
-        Animal gr = new Animal(Species.G, Color.RED);
-        Animal cr = new Animal(Species.C, Color.RED);
-        Animal er = new Animal(Species.E, Color.RED);
-        Animal lr = new Animal(Species.L, Color.RED);
-        Animal zr = new Animal(Species.Z, Color.RED);
-        
-        n = 0;
-        while(n<6){
-            animals.add(gr);
-            n++;
+        Animal[] ani = {gg, cg, eg, lg, zg, gr, cr, er, lr, zr};
+        int[] nbAni = {6, 2, 1, 1, 5, 6, 2, 1, 1, 5};
+        for(int i=0;i<ani.length;i++){
+            for(int j=0;j<nbAni[i];j++){
+                animals.add(ani[i]);
+            }
         }
-        n = 0;
-        while(n<5){
-            animals.add(zr);
-            n++;
-        }
-        n = 0;
-        while(n<2){
-            animals.add(cr);
-            n++;
-        }
-        animals.add(er);
-        animals.add(lr);
-        
-        
-            
-    }
+    }       
 
+    /**
+     *
+     * @return
+     */
     @Override
     public int hashCode() {
         int hash = 7;
@@ -85,6 +56,11 @@ public class Pieces {
         return hash;
     }
 
+    /**
+     *
+     * @param obj
+     * @return
+     */
     @Override
     public boolean equals(Object obj) {
         if (this == obj) {
@@ -103,6 +79,12 @@ public class Pieces {
         return true;
     }
     
+    /**
+     *
+     * @param color
+     * @param species
+     * @return
+     */
     public Animal getAnimal(Color color, Species species){
         
         Predicate<Animal> predicat = animals -> animals.getColor().equals(color);
@@ -114,11 +96,20 @@ public class Pieces {
         return leBon;    
     }
 
-    
+    /**
+     *
+     * @return
+     */
     public boolean hasAvailable(){
         return animals.isEmpty();
     }
     
+    /**
+     *
+     * @param color
+     * @param species
+     * @return
+     */
     public long getNbAnimal(Color color, Species species){
         Predicate<Animal> predicat = animals -> animals.getColor().equals(color);
         Predicate<Animal> predSpecie = animals -> animals.getSpecies().equals(species);
@@ -128,6 +119,10 @@ public class Pieces {
       
     }
 
+    /**
+     *
+     * @return
+     */
     @Override
     public String toString() {
         return "Pieces{" + animals + '}';

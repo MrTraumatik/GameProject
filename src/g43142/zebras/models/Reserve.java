@@ -8,6 +8,10 @@ package g43142.zebras.models;
  */
 import java.util.Arrays;
 
+/**
+ *
+ * @author dedec
+ */
 public class Reserve {
     
     static private final int NBROWS = 5;
@@ -59,6 +63,11 @@ public class Reserve {
                  
     }
     
+    /**
+     *
+     * @param pos
+     * @return
+     */
     public boolean isInside(Coordinates pos){
         return (pos.getColumn()>0)&& (pos.getColumn()<NBCOLS)
                 &&(pos.getRow()>0)&&(pos.getRow()<NBROWS);
@@ -95,8 +104,10 @@ public class Reserve {
         return "[" + (pos.getRow()+1) + "]" + "[" + (pos.getColumn()+1) + "]";
     } 
 
-
-    
+    /**
+     *
+     * @return
+     */
     @Override
     public String toString(){
          String chaine="";
@@ -121,6 +132,11 @@ public class Reserve {
          //replaceAll change les '],' en ']\n'
     }
 
+    /**
+     *
+     * @param pos
+     * @return
+     */
     public boolean freeColumn(Coordinates pos){
         int nbNull = 0;
         int row = 0;
@@ -133,6 +149,11 @@ public class Reserve {
         return nbNull!=0;
     }
    
+    /**
+     *
+     * @param pos
+     * @return
+     */
     public boolean freeRow(Coordinates pos){
         int nbNull = 0;
         int col = 0;

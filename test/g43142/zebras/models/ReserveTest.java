@@ -53,7 +53,7 @@ public class ReserveTest {
         
         Coordinates pos = new Coordinates(8, 10);
         Reserve instance = new Reserve();
-        Animal animal = new Animal(Species.G, Color.GREEN);
+        Animal animal = new Animal(Species.GAZELLE, Color.GREEN);
         instance.put(animal, pos);
         
          
@@ -69,7 +69,7 @@ public class ReserveTest {
         
         Coordinates pos = new Coordinates(0, 0);
         Reserve instance = new Reserve();
-        Animal animal = new Animal(Species.G, Color.GREEN);
+        Animal animal = new Animal(Species.GAZELLE, Color.GREEN);
         instance.put(animal, pos);
         boolean expResult = false;
         boolean result = instance.isFree(pos);
@@ -88,7 +88,7 @@ public class ReserveTest {
         
         Coordinates pos = new Coordinates(0, 0);
         Reserve instance = new Reserve();
-        Animal animal = new Animal(Species.L, Color.RED);
+        Animal animal = new Animal(Species.LION, Color.RED);
         instance.put(animal, pos);
         boolean expResult = false;
         boolean result = instance.isFree(pos);
@@ -107,7 +107,7 @@ public class ReserveTest {
         
         Coordinates pos = new Coordinates(0, 0);
         Reserve instance = new Reserve();
-        Animal animal = new Animal(Species.G, Color.GREEN);
+        Animal animal = new Animal(Species.GAZELLE, Color.GREEN);
         instance.put(animal, pos);
         Animal animalExpected = instance.getAnimal(pos);
         
@@ -125,7 +125,7 @@ public class ReserveTest {
         
         Coordinates pos = new Coordinates(10, 10);
         Reserve instance = new Reserve();
-        Animal animal = new Animal(Species.G, Color.GREEN);
+        Animal animal = new Animal(Species.GAZELLE, Color.GREEN);
         instance.put(animal, pos);
         Animal animalExpected = instance.getAnimal(pos);
         
@@ -144,7 +144,7 @@ public class ReserveTest {
         
         Coordinates pos = new Coordinates(0, 0);
         Reserve instance = new Reserve();
-        Animal animal = new Animal(Species.G, Color.GREEN);
+        Animal animal = new Animal(Species.GAZELLE, Color.GREEN);
         instance.put(animal, pos);
         Animal result = instance.getAnimal(pos);
         
@@ -161,7 +161,7 @@ public class ReserveTest {
         
         Coordinates pos = new Coordinates(13, 23);
         Reserve instance = new Reserve();
-        Animal animal = new Animal(Species.G, Color.GREEN);
+        Animal animal = new Animal(Species.GAZELLE, Color.GREEN);
         instance.put(animal, pos);
         Animal result = instance.getAnimal(pos);
         

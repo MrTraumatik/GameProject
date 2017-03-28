@@ -36,6 +36,10 @@ public class Coordinates {
         return COLUMN;
     }
 
+    /**
+     *Override of toString Method
+     * @return the row and column like this : [r][c]
+     */
     @Override
     public String toString() {
         return "[" +ROW + "][" + COLUMN + ']';

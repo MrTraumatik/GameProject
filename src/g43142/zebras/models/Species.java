@@ -7,30 +7,36 @@ package g43142.zebras.models;
  * @author dedec
  */
 
+/**
+ *
+ * @author dedec
+ */
+
+
 public enum Species {
     /**
      * Gazelle
      * 6 pawns, value 2
      */
-    G, 
+    GAZELLE, 
     /**
      * Zebra
      * 5 pawn, value 6
      */
-    Z, 
+    ZEBRA, 
     /**
      * Lion
      * 1 pawn, value 1
      */
-    L, 
+    LION, 
     /**
      * Elephant
      * 1 pawn, value 5
      */
-    E, 
+    ELEPHANT, 
     /**
      * Crocodile
      * 2 pawns, value 0
      */
-    C;
+    CROCODILE;
 }
