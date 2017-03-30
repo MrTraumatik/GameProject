@@ -10,56 +10,22 @@ import static org.junit.Assert.*;
 
 /**
  *
- * @author dedec
+ * @author Richard
  */
 public class PiecesTest {
     
-    public PiecesTest() {
-    }
-
-    /**
-     * Test of hashCode method, of class Pieces.
-     */
-    @Test
-    public void testHashCode() {
-        System.out.println("hashCode");
-        Pieces instance = new Pieces();
-        int expResult = 0;
-        int result = instance.hashCode();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of equals method, of class Pieces.
-     */
-    @Test
-    public void testEquals() {
-        System.out.println("equals");
-        Object obj = null;
-        Pieces instance = new Pieces();
-        boolean expResult = false;
-        boolean result = instance.equals(obj);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
     /**
      * Test of getAnimal method, of class Pieces.
      */
     @Test
     public void testGetAnimal() {
-        System.out.println("getAnimal");
-        Color color = null;
-        Species species = null;
+        
+        Animal animal = new Animal(Species.GAZELLE, Color.GREEN);
         Pieces instance = new Pieces();
-        Animal expResult = null;
-        Animal result = instance.getAnimal(color, species);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        Animal expResult = animal;
+        Animal result = instance.getAnimal(Color.GREEN, Species.GAZELLE);
+        assertEquals(expResult.toString(), result.toString());
+
     }
 
     /**
@@ -67,30 +33,91 @@ public class PiecesTest {
      */
     @Test
     public void testHasAvailable() {
-        System.out.println("hasAvailable");
         Pieces instance = new Pieces();
-        
         boolean expResult = false;
         boolean result = instance.hasAvailable();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+   
     }
+    
+    /**
+     * Test 2 of hasAvailable method, of class Pieces.
+     */
+    @Test
+    public void testHasAvailable2() {
+        Pieces instance = new Pieces();
+        for(int i=0;i<6;i++){
+            instance.getAnimal(Color.RED, Species.GAZELLE);
+            instance.getAnimal(Color.GREEN, Species.GAZELLE);
+        }
+        for(int i=0;i<5;i++){
+            instance.getAnimal(Color.RED, Species.ZEBRA);
+            instance.getAnimal(Color.GREEN, Species.ZEBRA);
+        }
+        for(int i=0;i<2;i++){
+            instance.getAnimal(Color.RED, Species.CROCODILE);
+            instance.getAnimal(Color.GREEN, Species.CROCODILE);
+        }
+        instance.getAnimal(Color.RED, Species.LION);
+        instance.getAnimal(Color.RED, Species.ELEPHANT);
+        instance.getAnimal(Color.GREEN, Species.LION);
+        instance.getAnimal(Color.GREEN, Species.ELEPHANT);
+        boolean expResult = true;
+        boolean result = instance.hasAvailable();
+        assertEquals(expResult, result);
+   
+    }
+    
 
     /**
      * Test of getNbAnimal method, of class Pieces.
      */
     @Test
     public void testGetNbAnimal() {
-        System.out.println("getNbAnimal");
-        Color color = null;
-        Species species = null;
         Pieces instance = new Pieces();
-        long expResult = 0L;
-        long result = instance.getNbAnimal(color, species);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        int expResult = 6;
+        int result = instance.getNbAnimal(Color.GREEN, Species.GAZELLE);
+        assertEquals(expResult, result); 
+    }
+    
+    /**
+     * Test 2 of getNbAnimal method, of class Pieces.
+     */
+    @Test
+    public void testGetNbAnimal2() {
+        Pieces instance = new Pieces();
+        int expResult = 5;
+        int result = instance.getNbAnimal(Color.GREEN, Species.ZEBRA);
+        assertEquals(expResult, result); 
+    }
+    
+    /**
+     * Test 3 of getNbAnimal method, of class Pieces.
+     */
+    @Test
+    public void testGetNbAnimal3() {
+        Pieces instance = new Pieces();
+        int expResult = 0;
+        instance.getAnimal(Color.GREEN, Species.LION);
+        int result = instance.getNbAnimal(Color.GREEN, Species.LION);
+        assertEquals(expResult, result); 
+    }
+    
+    /**
+     * Test of getNbAnimal method, of class Pieces.
+     */
+    @Test
+    public void testGetNbAnimal4() {
+        Pieces instance = new Pieces();
+        int expResult = 0;
+        instance.getAnimal(Color.RED, Species.GAZELLE);
+        instance.getAnimal(Color.RED, Species.GAZELLE);
+        instance.getAnimal(Color.RED, Species.GAZELLE);
+        instance.getAnimal(Color.RED, Species.GAZELLE);
+        instance.getAnimal(Color.RED, Species.GAZELLE);
+        instance.getAnimal(Color.RED, Species.GAZELLE);
+        int result = instance.getNbAnimal(Color.RED, Species.GAZELLE);
+        assertEquals(expResult, result); 
     }
 
     /**
@@ -98,13 +125,25 @@ public class PiecesTest {
      */
     @Test
     public void testToString() {
-        System.out.println("toString");
         Pieces instance = new Pieces();
-        String expResult = "";
+        String expResult = "\n  STOCK\n----------\n" + 6 + " Gazelle(s)\n"
+                + 5 + " Zèbre(s)\n" + 2 + " Corcodile(s)\n" 
+                + 1 + " Lion\n" + 1 + " Eléphant";
+        
         String result = instance.toString();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        
+    }
+
+    /**
+     * Test of put method, of class Pieces.
+     */
+    @Test
+    public void testPut() {
+        Animal animal = new Animal(Species.GAZELLE, Color.GREEN);
+        Pieces instance = new Pieces();
+        instance.put(animal);
+        
     }
     
 }

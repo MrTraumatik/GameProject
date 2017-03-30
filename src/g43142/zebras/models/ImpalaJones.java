@@ -5,14 +5,22 @@ package g43142.zebras.models;
  * @author Richard
  */
 public class ImpalaJones {
-    int position; 
+    
+    //private static final int MINRANGE = 0;
+    //private static final int MAXRANGE = 21;
+    //@Range(min=MINRANGE, max=MAXRANGE)
+    private int position; 
 
     /**
      *Constructor of Impala Jones
      * set position to -1 (out of his path)
      */
     public ImpalaJones() {
-        position = -1;
+        if(position<0||position>21){
+            throw new IllegalArgumentException();
+        }else{
+            position = -1;
+        }
     }
 
     /**

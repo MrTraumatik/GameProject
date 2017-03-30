@@ -73,5 +73,9 @@ public class Zebras {
         System.out.println("impala pos = " + I.getPosition());
         System.out.println("first move avalaible = " + I.findFirst(reserve));
         
+        //System.out.println(I.checkMove(reserve, 1));
+        
+        System.out.println(reserve.getAdjacents(autreCoord));
+        
     }
 }

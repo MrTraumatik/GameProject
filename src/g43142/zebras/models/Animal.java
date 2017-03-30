@@ -80,12 +80,36 @@ public class Animal {
     public AnimalState getState() {
         return state;
     }
+    
+    /**
+     * setter of the animal's state
+     * @param status that will be given to the animal
+     */
+    public void setState(AnimalState status){
+        this.state=status;
+    }
      
     /**
-     *
-     * @param other
+     *Interaction between animals:
+     * a lion make gazelles run and zebras hide
+     * @param other the animal that will be put in the reserve
      */
     public void action(Animal other){
+         Species spec1 = this.species;
+         Species spec2 = other.species;
+         
+         if(spec2==Species.LION){
+             if(spec1==Species.ZEBRA){
+                this.setState(AnimalState.HIDDEN);
+             }
+             if(spec1==Species.GAZELLE){
+                this.setState(AnimalState.RUN);
+             }
+         }
+         
+         if(spec2==Species.ZEBRA && spec1==Species.CROCODILE){
+            other.setState(AnimalState.HIDDEN);  
+         }
          
      }
     

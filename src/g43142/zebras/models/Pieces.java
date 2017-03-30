@@ -46,40 +46,6 @@ public class Pieces {
     }       
 
     /**
-     *
-     * @return
-     */
-    @Override
-    public int hashCode() {
-        int hash = 7;
-        hash = 73 * hash + Objects.hashCode(this.animals);
-        return hash;
-    }
-
-    /**
-     *
-     * @param obj
-     * @return
-     */
-    @Override
-    public boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if (obj == null) {
-            return false;
-        }
-        if (getClass() != obj.getClass()) {
-            return false;
-        }
-        final Pieces other = (Pieces) obj;
-        if (!Objects.equals(this.animals, other.animals)) {
-            return false;
-        }
-        return true;
-    }
-    
-    /**
      *Get an animal from the list, and remove it
      * @param color the color of the animal
      * @param species the animal's specie
@@ -119,7 +85,6 @@ public class Pieces {
         //lambda expression ?
         return (int) animals.stream().filter(predicat).filter(predSpecie).count();
         
-      
     }
 
     /**
@@ -134,26 +99,17 @@ public class Pieces {
         int nbL = getNbAnimal(Color.GREEN, Species.LION);
         int nbE = getNbAnimal(Color.GREEN, Species.ELEPHANT);
         
-        
-        
         return "\n  STOCK\n----------\n" + nbG + " Gazelle(s)\n"
                 + nbZ + " Zèbre(s)\n" + nbC + " Corcodile(s)\n" 
-                + nbL + " Lion\n" + nbE + " Eléphant";
-                
-                
-                
-                
-                
-        //return "Pieces{" + animals + '}';
+                + nbL + " Lion\n" + nbE + " Eléphant";         
     }
     
-    
-    
+    /**
+     * Simply put an animal at the end of the list
+     * @param animal that will be added
+     */
     public void put(Animal animal){
         animals.add(animal);
     }
-     
-     
-    
     
 }

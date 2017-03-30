@@ -71,15 +71,6 @@ public class Reserve {
     public Animal getAnimal(Coordinates pos){
         return reserve[pos.getRow()][pos.getColumn()];
     }
-    
-    /**
-     * Extra method to print the coordinates as a String 
-     * @param pos the row and the column
-     * @return a String like this : [row][column]
-     */
-    public String getCoordinates(Coordinates pos){
-        return "[" + (pos.getRow()+1) + "]" + "[" + (pos.getColumn()+1) + "]";
-    } 
 
     /**
      *Override of toString Method
@@ -172,23 +163,48 @@ public class Reserve {
         return list;   
     }
     
+    /**
+     * check if the position given is on the border of the reserve
+     * @param pos the position that needs to be checked
+     * @return true if it's on the border
+     */
     public boolean isBorder(Coordinates pos){
         return pos.getColumn()==0 || pos.getColumn()==5 ||
                 pos.getRow()==0 || pos.getRow()==4;
     }
     
+    /**
+     * check if the position given is on the top side
+     * @param pos the position that needs to be checked
+     * @return true if it's on top
+     */
     public boolean isUP(Coordinates pos){
         return pos.getRow()==0;
     }
     
+    /**
+     * check if the position given is on the down side
+     * @param pos the position that needs to be checked
+     * @return true if it's down side
+     */
     public boolean isDown(Coordinates pos){
         return pos.getRow()==4;
     }
     
+    /**
+     * check if the position given is on the right side
+     * @param pos the position that needs to be checked
+     * @return true if it's on the right
+     */
     public boolean isRight(Coordinates pos){
         return pos.getColumn()==5;
     }
     
+    /**
+     * check if the position given is on the left side
+     * @param pos the position that needs to be checked
+     * @return true if it's on the left
+     */
     public boolean isLeft(Coordinates pos){
         return pos.getColumn()==0;
     }

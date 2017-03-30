@@ -1,5 +1,7 @@
 package g43142.zebras.models;
 
+import java.util.Objects;
+
 /*
  * Coordinate's structure, with row and columns
  * @author dedec
