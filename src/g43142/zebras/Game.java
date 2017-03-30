@@ -11,6 +11,7 @@ import g43142.zebras.models.Reserve;
 import g43142.zebras.models.Species;
 import java.util.ArrayList;
 import java.util.List;
+import g43142.zebras.GameException;
 
 /**
  *
@@ -60,13 +61,16 @@ public class Game {
      * @param position of Impala Jones at the beginning of game
      * @throws GameException if game's status isn't GameStatus.INIT.
      */
-    public void setImpalaJonesFirstPosition(int position){
+    public void setImpalaJonesFirstPosition(int position)throws GameException{
         if(this.status!=status.INIT){
             throw new GameException();
         }else{
             impala.init(position);
         }
     }
+    
+    
+    public GameException uneException;
     
     /**
      *Put an animal in the Board. Put an animal of the given species for the
@@ -80,7 +84,7 @@ public class Game {
      * or that the position is not free
      * or the current player doesn't have that a tile of that species to play anymore
      */
-    public void putAnimal(Coordinates position, Species species){
+    public void putAnimal(Coordinates position, Species species) throws GameException{
         Color color = currentPlayer.getColor();
         if(this.status!=status.ANIMAL || !impala.valid(position) ||
                 !reserve.isFree(position) || pieces.getNbAnimal(color, species)==0){
@@ -100,7 +104,7 @@ public class Game {
      * or impala will arrive on a full row or column
      * or the distance is too large
      */
-    public void moveImpalaJones(int distance){
+    public void moveImpalaJones(int distance)throws GameException{
         if(this.status!=status.IMPALA || !impala.checkMove(reserve, distance) ||
                 impala.findFirst(reserve)>3){
             throw new GameException();
@@ -186,7 +190,8 @@ public class Game {
      * @return the score of the player of the given color.
      */
     public int getScore(Color color){
-        
+      //TODO 3eme remise
+      return 0;
     }
     
     

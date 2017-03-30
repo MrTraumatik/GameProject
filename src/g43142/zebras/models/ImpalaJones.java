@@ -141,16 +141,35 @@ public class ImpalaJones {
      * @return the first deplacement possible for impala
      */
     public int findFirst(Reserve reserve){
-        int deplacement = 0;
+        int move = 1;
+        boolean done = false;
+        int i=1;
+        int j=1;
         int row = getRow();
         int col = getColumn();
-        Coordinates pos = new Coordinates(row+1, col+1);
-        while(!reserve.freeColumn(pos)&& !reserve.freeRow(pos)){
-            row++;
-            col++;
-            deplacement++;
+        
+        
+        //bug pour passer des col a row      
+        while(!done){
+            if(!reserve.freeColumn(new Coordinates(row, col+i))) {
+                move++;
+                i++;
+            }else{
+                done = true;
+            }
+            if(!reserve.freeRow(new Coordinates(row + j, col))){
+                move++;
+                j++;
+            }else{
+                done=true;
+            }
         }
-        return deplacement;
+
+        
+        int[] tab = new int[20];
+        int positionImpala = getPosition();
+        
+        return move;
     }
     
     

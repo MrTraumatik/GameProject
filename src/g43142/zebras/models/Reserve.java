@@ -5,8 +5,12 @@ package g43142.zebras.models;
  * 30 cases total (5x6).
  * @author dedec
  */
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collection;
+import java.util.Iterator;
 import java.util.List;
+import java.util.ListIterator;
 
 public class Reserve {
     
@@ -144,7 +148,49 @@ public class Reserve {
      * @return the list of case next to the position
      */
     public List<Coordinates> getAdjacents(Coordinates pos){
+        List<Coordinates> list = new ArrayList<>();
+        int row=pos.getRow();
+        int col=pos.getColumn();
         
+        Coordinates posUP = new Coordinates(row -1, col);
+        Coordinates posDown = new Coordinates(row+1, col);
+        Coordinates posRight =  new Coordinates(row, col+1);    
+        Coordinates posLeft = new Coordinates(row, col-1); 
+        
+        if(!isUP(pos)){
+            list.add(posUP);
+        }
+        if(!isDown(pos)){
+            list.add(posDown);
+        }
+        if(!isLeft(pos)){
+            list.add(posLeft);
+        }
+        if(!isRight(pos)){
+            list.add(posRight);
+        }
+        return list;   
+    }
+    
+    public boolean isBorder(Coordinates pos){
+        return pos.getColumn()==0 || pos.getColumn()==5 ||
+                pos.getRow()==0 || pos.getRow()==4;
+    }
+    
+    public boolean isUP(Coordinates pos){
+        return pos.getRow()==0;
+    }
+    
+    public boolean isDown(Coordinates pos){
+        return pos.getRow()==4;
+    }
+    
+    public boolean isRight(Coordinates pos){
+        return pos.getColumn()==5;
+    }
+    
+    public boolean isLeft(Coordinates pos){
+        return pos.getColumn()==0;
     }
     
 }

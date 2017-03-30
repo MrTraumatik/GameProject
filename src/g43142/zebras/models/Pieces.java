@@ -110,11 +110,14 @@ public class Pieces {
      * @param species the animal's specie
      * @return the number of animal left in the list
      */
-    public long getNbAnimal(Color color, Species species){
+    public int getNbAnimal(Color color, Species species){
         Predicate<Animal> predicat = animals -> animals.getColor().equals(color);
         Predicate<Animal> predSpecie = animals -> animals.getSpecies().equals(species);
-        long cpt = animals.stream().filter(predicat).filter(predSpecie).count();
-        return cpt;
+        //int cpt = animals.stream().filter(predicat).filter(predSpecie).count();
+        //return cpt;
+        
+        //lambda expression ?
+        return (int) animals.stream().filter(predicat).filter(predSpecie).count();
         
       
     }

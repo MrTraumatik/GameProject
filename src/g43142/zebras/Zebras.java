@@ -53,11 +53,25 @@ public class Zebras {
         reserve.put(autreAni, (new Coordinates(0, 4)));
         reserve.put(autreAni, (new Coordinates(0, 5)));
         
+        
+        
         System.out.println(reserve);
         
         //problème avec la méthpde findFirst
+        
+        reserve.put(unAnimal, new Coordinates(1, 1));
+        reserve.put(unAnimal, new Coordinates(2, 1));
+        reserve.put(unAnimal, new Coordinates(3, 1));
+        reserve.put(unAnimal, new Coordinates(4, 1));
+        //reserve.put(unAnimal, new Coordinates(5, 1));
+        System.out.println(reserve);
+        
+        System.out.println(reserve.freeColumn(new Coordinates(0, 2)));
+        
         ImpalaJones I = new ImpalaJones();
-        System.out.println(I.findFirst(reserve));
+        I.init(0);
+        System.out.println("impala pos = " + I.getPosition());
+        System.out.println("first move avalaible = " + I.findFirst(reserve));
         
     }
 }
