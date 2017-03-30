@@ -128,7 +128,29 @@ public class Pieces {
      */
     @Override
     public String toString() {
-        return "Pieces{" + animals + '}';
+        int nbG = getNbAnimal(Color.GREEN, Species.GAZELLE);
+        int nbZ = getNbAnimal(Color.GREEN, Species.ZEBRA);
+        int nbC = getNbAnimal(Color.GREEN, Species.CROCODILE);
+        int nbL = getNbAnimal(Color.GREEN, Species.LION);
+        int nbE = getNbAnimal(Color.GREEN, Species.ELEPHANT);
+        
+        
+        
+        return "\n  STOCK\n----------\n" + nbG + " Gazelle(s)\n"
+                + nbZ + " Zèbre(s)\n" + nbC + " Corcodile(s)\n" 
+                + nbL + " Lion\n" + nbE + " Eléphant";
+                
+                
+                
+                
+                
+        //return "Pieces{" + animals + '}';
+    }
+    
+    
+    
+    public void put(Animal animal){
+        animals.add(animal);
     }
      
      
