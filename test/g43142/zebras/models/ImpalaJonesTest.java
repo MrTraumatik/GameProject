@@ -19,9 +19,34 @@ public class ImpalaJonesTest {
      */
     @Test
     public void testGetPosition() {
-        System.out.println("getPosition");
+        ImpalaJones instance = new ImpalaJones();
+        int expResult = -1;
+        int result = instance.getPosition();
+        assertEquals(expResult, result);
+    
+    }
+    
+    /**
+     * Test2 of getPosition method, of class ImpalaJones.
+     */
+    @Test
+    public void testGetPosition2() {
         ImpalaJones instance = new ImpalaJones();
         int expResult = 0;
+        instance.init(0);
+        int result = instance.getPosition();
+        assertEquals(expResult, result);
+    
+    }
+    
+    /**
+     * Test3 of getPosition method, of class ImpalaJones.
+     */
+    @Test
+    public void testGetPosition3() {
+        ImpalaJones instance = new ImpalaJones();
+        int expResult = 20;
+        instance.move(21);
         int result = instance.getPosition();
         assertEquals(expResult, result);
     
@@ -32,7 +57,6 @@ public class ImpalaJonesTest {
      */
     @Test
     public void testInit() {
-        System.out.println("init");
         int nb = 0;
         ImpalaJones instance = new ImpalaJones();
         instance.init(nb);
@@ -44,10 +68,32 @@ public class ImpalaJonesTest {
      */
     @Test
     public void testMove() {
-        System.out.println("move");
         int distance = 0;
         ImpalaJones instance = new ImpalaJones();
         instance.move(distance);
+        
+    }
+    
+    /**
+     * Test of move method, of class ImpalaJones.
+     */
+    @Test
+    public void testMove2() {
+        int distance = 9;
+        ImpalaJones instance = new ImpalaJones();
+        instance.move(distance);
+        
+    }
+    
+    /**
+     * Test of move method, of class ImpalaJones.
+     */
+    @Test (expected = ArrayIndexOutOfBoundsException.class)
+    public void testMove3() {
+        int distance = 30;
+        ImpalaJones instance = new ImpalaJones();
+        instance.move(distance);
+        assertEquals(distance, distance);
         
     }
 
@@ -56,8 +102,20 @@ public class ImpalaJonesTest {
      */
     @Test
     public void testIsUp() {
-        System.out.println("isUp");
         ImpalaJones instance = new ImpalaJones();
+        boolean expResult = true;
+        boolean result = instance.isUp();
+        assertEquals(expResult, result);
+       
+    }
+    
+    /**
+     * Test of isUp method, of class ImpalaJones.
+     */
+    @Test
+    public void testIsUp2() {
+        ImpalaJones instance = new ImpalaJones();
+        instance.move(10);
         boolean expResult = false;
         boolean result = instance.isUp();
         assertEquals(expResult, result);
@@ -69,9 +127,21 @@ public class ImpalaJonesTest {
      */
     @Test
     public void testIsDown() {
-        System.out.println("isDown");
         ImpalaJones instance = new ImpalaJones();
         boolean expResult = false;
+        boolean result = instance.isDown();
+        assertEquals(expResult, result);
+        
+    }
+    
+    /**
+     * Test of isDown method, of class ImpalaJones.
+     */
+    @Test
+    public void testIsDown2() {
+        ImpalaJones instance = new ImpalaJones();
+        instance.move(15);
+        boolean expResult = true;
         boolean result = instance.isDown();
         assertEquals(expResult, result);
         
@@ -82,9 +152,21 @@ public class ImpalaJonesTest {
      */
     @Test
     public void testIsRight() {
-        System.out.println("isRight");
         ImpalaJones instance = new ImpalaJones();
         boolean expResult = false;
+        boolean result = instance.isRight();
+        assertEquals(expResult, result);
+        
+    }
+    
+    /**
+     * Test of isRight method, of class ImpalaJones.
+     */
+    @Test
+    public void testIsRight2() {
+        ImpalaJones instance = new ImpalaJones();
+        instance.move(9);
+        boolean expResult = true;
         boolean result = instance.isRight();
         assertEquals(expResult, result);
         
@@ -95,9 +177,21 @@ public class ImpalaJonesTest {
      */
     @Test
     public void testIsLeft() {
-        System.out.println("isLeft");
         ImpalaJones instance = new ImpalaJones();
         boolean expResult = false;
+        boolean result = instance.isLeft();
+        assertEquals(expResult, result);
+        
+    }
+    
+    /**
+     * Test of isLeft method, of class ImpalaJones.
+     */
+    @Test
+    public void testIsLeft2() {
+        ImpalaJones instance = new ImpalaJones();
+        instance.move(17);
+        boolean expResult = true;
         boolean result = instance.isLeft();
         assertEquals(expResult, result);
         
@@ -108,9 +202,21 @@ public class ImpalaJonesTest {
      */
     @Test
     public void testGetColumn() {
-        System.out.println("getColumn");
         ImpalaJones instance = new ImpalaJones();
         int expResult = 0;
+        int result = instance.getColumn();
+        assertEquals(expResult, result);
+       
+    }
+    
+    /**
+     * Test of getColumn method, of class ImpalaJones.
+     */
+    @Test
+    public void testGetColumn2() {
+        ImpalaJones instance = new ImpalaJones();
+        instance.move(3);
+        int expResult = 2;
         int result = instance.getColumn();
         assertEquals(expResult, result);
        
@@ -121,9 +227,21 @@ public class ImpalaJonesTest {
      */
     @Test
     public void testGetRow() {
-        System.out.println("getRow");
         ImpalaJones instance = new ImpalaJones();
         int expResult = 0;
+        int result = instance.getRow();
+        assertEquals(expResult, result);
+        
+    }
+    
+    /**
+     * Test of getRow method, of class ImpalaJones.
+     */
+    @Test
+    public void testGetRow2() {
+        ImpalaJones instance = new ImpalaJones();
+        instance.move(11);
+        int expResult = 4;
         int result = instance.getRow();
         assertEquals(expResult, result);
         
@@ -134,10 +252,36 @@ public class ImpalaJonesTest {
      */
     @Test
     public void testCheckMove() {
-        System.out.println("checkMove");
-        Reserve reserve = null;
-        int distance = 0;
+        Reserve reserve = new Reserve();
+        int distance = 1;
         ImpalaJones instance = new ImpalaJones();
+        instance.init(0);
+        boolean expResult = true;
+        boolean result = instance.checkMove(reserve, distance);
+        assertEquals(expResult, result);
+       
+    }
+    
+    /**
+     * Test of checkMove method, of class ImpalaJones.
+     */
+    @Test
+    public void testCheckMove2() {
+        Reserve reserve = new Reserve();
+        int distance = 1;
+        Animal animal = new Animal(Species.GAZELLE, Color.GREEN);
+        Coordinates pos = new Coordinates(0, 1);
+        Coordinates pos1 = new Coordinates(1, 1);
+        Coordinates pos2 = new Coordinates(2, 1);
+        Coordinates pos3 = new Coordinates(3, 1);
+        Coordinates pos4 = new Coordinates(4, 1);
+        reserve.put(animal, pos);
+        reserve.put(animal, pos1);
+        reserve.put(animal, pos2);
+        reserve.put(animal, pos3);
+        reserve.put(animal, pos4);
+        ImpalaJones instance = new ImpalaJones();
+        instance.init(0);
         boolean expResult = false;
         boolean result = instance.checkMove(reserve, distance);
         assertEquals(expResult, result);
@@ -149,9 +293,23 @@ public class ImpalaJonesTest {
      */
     @Test
     public void testValid() {
-        System.out.println("valid");
-        Coordinates pos = null;
+        Coordinates pos = new Coordinates(0, 0);
         ImpalaJones instance = new ImpalaJones();
+        instance.init(0);
+        boolean expResult = true;
+        boolean result = instance.valid(pos);
+        assertEquals(expResult, result);
+        
+    }
+    
+    /**
+     * Test of valid method, of class ImpalaJones.
+     */
+    @Test
+    public void testValid2() {
+        Coordinates pos = new Coordinates(0, 0);
+        ImpalaJones instance = new ImpalaJones();
+        instance.move(3);
         boolean expResult = false;
         boolean result = instance.valid(pos);
         assertEquals(expResult, result);

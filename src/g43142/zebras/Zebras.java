@@ -77,5 +77,40 @@ public class Zebras {
         
         System.out.println(reserve.getAdjacents(autreCoord));
         
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
     }
+    
+    
+    
+    
+    public static void play(Model game){
+        
+    }
+    
+    
+    
 }

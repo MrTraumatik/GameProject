@@ -12,6 +12,7 @@ import g43142.zebras.models.Species;
 import java.util.ArrayList;
 import java.util.List;
 import g43142.zebras.GameException;
+import java.util.Scanner;
 
 /**
  *
@@ -70,7 +71,7 @@ public class Game {
     }
     
     
-    public GameException uneException;
+    public static GameException uneException;
     
     /**
      *Put an animal in the Board. Put an animal of the given species for the
@@ -192,6 +193,161 @@ public class Game {
     public int getScore(Color color){
       //TODO 3eme remise
       return 0;
+    }
+    
+    
+    public void play(Model game){
+        System.out.print("Where must Impala Jones start ? \nPlease enter the position : ");
+        Scanner sc = new Scanner(System.in);
+        int position = sc.nextInt();
+        ImpalaJones imp = new ImpalaJones();
+        imp.init(position);
+        
+        while(!game.isOver()){
+            System.out.println(pieces);
+            System.out.println(reserve);
+            
+            if(status==status.INIT){
+                System.out.print("Initialisation of Impala : ");
+                int pos = sc.nextInt();
+                imp.init(pos);
+            }
+            
+            if(status==status.ANIMAL){
+                System.out.println("Which animal do you want to place ? ");
+                String s = sc.next();
+                
+                Species specie = null;
+                if(isGazelle(s)){
+                    specie = Species.GAZELLE;
+                }if(isCrocodile(s)){
+                    specie = Species.CROCODILE;
+                }if(isElephant(s)){
+                    specie = Species.ELEPHANT;
+                }if(isLion(s)){
+                    specie = Species.LION;
+                }if(isZebre(s)){
+                    specie = Species.ZEBRA;
+                }else{
+                    System.out.println("Try again");
+                }
+                
+                Color color = getCurrentColor();
+                Animal animal;
+                if(specie==null){
+                    throw new GameException();
+                }else{
+                    animal = new Animal(specie, color);
+                }
+                
+                System.out.println("Where does the"+animal+"needs to be placed ? ");
+                System.out.print("row : ");
+                int row = sc.nextInt();
+                System.out.print("column : ");
+                int col = sc.nextInt();
+                Coordinates coord = new Coordinates(row, col);
+                
+                reserve.put(animal, coord);
+            }
+            
+            if(status==status.IMPALA){
+                System.out.println("last step of the round : Move Impala");
+                System.out.println("(reminder, Impala can only do 3steps max");
+                System.out.print("next position : ");
+                int pos = sc.nextInt();
+                
+                while(!sc.hasNextInt()|| pos<0 || pos>3){
+                    System.out.println("Try again, wrong number...");
+                    pos=sc.nextInt();
+                }
+                
+                imp.move(pos);
+
+            }
+            
+        }
+        
+    }
+    
+    
+    public boolean isGazelle(String s){
+        String s1 = "gazelle";
+        String s2 = "Gazelle";
+        String s3 = "GAZELLE";
+        String s4 = "gazel";
+        String s5 = "gazele";
+        String s6 = "g";
+        String s7 = "G";
+        String s8 = "Gazel";
+        String s9 = "Gazele";
+        
+        return (s.equals(s1) || s.equals(s2) || s.equals(s3) || s.equals(s4) ||
+                s.equals(s5) || s.equals(s6) || s.equals(s7) || s.equals(s8) ||
+                s.equals(s9) );
+        
+    }
+    
+    public boolean isZebre(String s){
+        String s1 = "zebre";
+        String s2 = "Zebre";
+        String s3 = "Zèbre";
+        String s4 = "Zebre";
+        String s5 = "Z";
+        String s6 = "z";
+        String s7 = "Zebres";
+        String s8 = "Zebra";
+        String s9 = "Zebras";
+        
+        return (s.equals(s1) || s.equals(s2) || s.equals(s3) || s.equals(s4) ||
+                s.equals(s5) || s.equals(s6) || s.equals(s7) || s.equals(s8) ||
+                s.equals(s9) );
+        
+    }
+    
+    public boolean isElephant(String s){
+        String s1 = "elephant";
+        String s2 = "Elephant";
+        String s3 = "Eléphant";
+        String s4 = "E";
+        String s5 = "e";
+        String s6 = "elephants";
+        String s7 = "éléphant";
+        String s8 = "Éléphant";
+        String s9 = "Élephant";
+        
+        return (s.equals(s1) || s.equals(s2) || s.equals(s3) || s.equals(s4) ||
+                s.equals(s5) || s.equals(s6) || s.equals(s7) || s.equals(s8) ||
+                s.equals(s9) );
+        
+    }
+    
+    public boolean isLion(String s){
+        String s1 = "lion";
+        String s2 = "Lion";
+        String s3 = "lions";
+        String s4 = "Lions";
+        String s5 = "l";
+        String s6 = "L";
+
+        
+        return (s.equals(s1) || s.equals(s2) || s.equals(s3) || s.equals(s4) ||
+                s.equals(s5) || s.equals(s6) );
+        
+    }
+    
+    public boolean isCrocodile(String s){
+        String s1 = "crocodile";
+        String s2 = "Crocodile";
+        String s3 = "croco";
+        String s4 = "Croco";
+        String s5 = "c";
+        String s6 = "C";
+        String s7 = "crocodil";
+        String s8 = "Crocodil";
+        
+        return (s.equals(s1) || s.equals(s2) || s.equals(s3) || s.equals(s4) ||
+                s.equals(s5) || s.equals(s6) || s.equals(s7) || s.equals(s8));
+        
     }
     
     
