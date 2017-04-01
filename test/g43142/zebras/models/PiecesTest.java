@@ -1,21 +1,20 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package g43142.zebras.models;
 
 import org.junit.Test;
 import static org.junit.Assert.*;
 
 /**
- *
+ *Test class for the methods of Pieces.java class
  * @author Richard
  */
 public class PiecesTest {
     
     /**
      * Test of getAnimal method, of class Pieces.
+     * should return an animal of the specie and the color given in parameters
+     * and delete it from the list. so getAnimal here should return a green
+     * gazelle and delete it from instance
+     * the 2 toString are used to make the comparaison between 'G' and 'G' possible
      */
     @Test
     public void testGetAnimal() {
@@ -30,6 +29,7 @@ public class PiecesTest {
 
     /**
      * Test of hasAvailable method, of class Pieces.
+     * should return false because the list is not empty
      */
     @Test
     public void testHasAvailable() {
@@ -42,6 +42,8 @@ public class PiecesTest {
     
     /**
      * Test 2 of hasAvailable method, of class Pieces.
+     * First step to empty the list instance
+     * then hasAvailable should return true
      */
     @Test
     public void testHasAvailable2() {
@@ -71,6 +73,8 @@ public class PiecesTest {
 
     /**
      * Test of getNbAnimal method, of class Pieces.
+     * Instantiation of a piece put 6 green gazelle
+     * so getNBAnimal should return 6
      */
     @Test
     public void testGetNbAnimal() {
@@ -82,6 +86,8 @@ public class PiecesTest {
     
     /**
      * Test 2 of getNbAnimal method, of class Pieces.
+     * Instantiation of a piece put 5 green zebras
+     * so it should return 5
      */
     @Test
     public void testGetNbAnimal2() {
@@ -93,6 +99,7 @@ public class PiecesTest {
     
     /**
      * Test 3 of getNbAnimal method, of class Pieces.
+     * getAnimal remove the only green lion so getNBAnimal should return 0
      */
     @Test
     public void testGetNbAnimal3() {
@@ -105,6 +112,8 @@ public class PiecesTest {
     
     /**
      * Test of getNbAnimal method, of class Pieces.
+     * getAnimal 6times remove all red gazelle from instance
+     * so it should retrun 0
      */
     @Test
     public void testGetNbAnimal4() {
@@ -137,6 +146,7 @@ public class PiecesTest {
 
     /**
      * Test of put method, of class Pieces.
+     * the new animal should be put in the end of the list instance
      */
     @Test
     public void testPut() {

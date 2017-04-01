@@ -108,7 +108,7 @@ public class Reserve {
         int row = 0;
         while(nbNull==0 && row<4){
             if(reserve[row][pos.getColumn()]==null){
-                nbNull=nbNull+1;
+                nbNull++;
             }
             row++;
         }

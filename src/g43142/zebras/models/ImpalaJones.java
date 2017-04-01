@@ -117,20 +117,16 @@ public class ImpalaJones {
      * @return true if the move is ok
      */
     public boolean checkMove(Reserve reserve, int distance){
-        boolean freeRow;
-        boolean freeColumn;
         move(distance);
-
-        int row = getRow();
-        int col = getColumn();
-        
-        Coordinates pos = new Coordinates(row, col);
-        
-        freeRow=reserve.freeRow(pos);
-        freeColumn=reserve.freeColumn(pos);
-        
-        return freeRow || freeColumn;
-           
+        Coordinates pos = new Coordinates(getRow(), getColumn());
+        move(-distance);
+        boolean check;
+        if(isUp()||isDown()){
+            check = reserve.freeColumn(pos);
+        }else{
+            check = reserve.freeRow(pos);
+        }
+        return check;
     }
     
     /**
@@ -149,15 +145,13 @@ public class ImpalaJones {
      * @return the first deplacement possible for impala
      */
     public int findFirst(Reserve reserve){
+        /**
         int move = 1;
         boolean done = false;
         int i=1;
         int j=1;
         int row = getRow();
-        int col = getColumn();
-        
-        
-        //bug pour passer des col a row      
+        int col = getColumn();    
         while(!done){
             if(!reserve.freeColumn(new Coordinates(row, col+i))) {
                 move++;
@@ -172,11 +166,16 @@ public class ImpalaJones {
                 done=true;
             }
         }
-
-        
-        int[] tab = new int[20];
-        int positionImpala = getPosition();
-        
+        */
+        int move = 1;
+        boolean done =false;
+        while(!done){
+            move++;
+            
+        }
+        if(move>6){
+            throw new IllegalArgumentException("problem");
+        }
         return move;
     }
     

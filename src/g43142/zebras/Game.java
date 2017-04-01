@@ -9,9 +9,10 @@ import g43142.zebras.models.Pieces;
 import g43142.zebras.models.Player;
 import g43142.zebras.models.Reserve;
 import g43142.zebras.models.Species;
+import g43142.zebras.view.View;
 import java.util.ArrayList;
 import java.util.List;
-import g43142.zebras.GameException;
+import java.io.IOException;
 import java.util.Scanner;
 
 /**
@@ -196,7 +197,7 @@ public class Game {
     }
     
     
-    public void play(Model game){
+    public void play(Model game) throws GameException, IOException {
         System.out.print("Where must Impala Jones start ? \nPlease enter the position : ");
         Scanner sc = new Scanner(System.in);
         int position = sc.nextInt();
@@ -204,8 +205,8 @@ public class Game {
         imp.init(position);
         
         while(!game.isOver()){
-            System.out.println(pieces);
-            System.out.println(reserve);
+            System.out.println(View.viewStock(pieces));
+            System.out.println(View.viewReserve(reserve));
             
             if(status==status.INIT){
                 System.out.print("Initialisation of Impala : ");
