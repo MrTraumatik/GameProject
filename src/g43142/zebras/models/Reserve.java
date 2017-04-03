@@ -6,11 +6,7 @@ package g43142.zebras.models;
  * @author dedec
  */
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.Iterator;
 import java.util.List;
-import java.util.ListIterator;
 
 public class Reserve {
     
@@ -27,6 +23,7 @@ public class Reserve {
     
     /**
      * Say (false or true) if an animal is in the case or not
+     * 
      * @param pos row and column 
      * @return false if an animal is on the case, true if not
      */
@@ -36,6 +33,7 @@ public class Reserve {
 
     /**
      * Insert the animal in the case
+     * 
      * @param animal the animal to put in
      * @param pos the position where the animal need to be
      */
@@ -55,6 +53,7 @@ public class Reserve {
     
     /**
      *Check if the coordinate is inside the reserve
+     * 
      * @param pos row and column of the case that will be checked
      * @return true if it's inside the reserve
      */
@@ -65,6 +64,7 @@ public class Reserve {
     
     /**
      * Getter for the animal
+     * 
      * @param pos the animal's position
      * @return the animal who's on the case
      */
@@ -76,7 +76,9 @@ public class Reserve {
      *Override of toString Method
      * change the print by creating one big string of - if there's no animal
      * and the first letter of the animal if he's on the case
-     * @return
+     * 
+     * @return a string shape like a table with '-' or the first letter of an 
+     * animal.
      */
     @Override
     public String toString(){
@@ -100,14 +102,15 @@ public class Reserve {
     /**
      *Check if the column of the coordinate has at least one free case
      * where an animal can be placed
-     * @param pos the position with the row and the column
+     * 
+     * @param col the column of the position
      * @return true if the column has at least one free spot
      */
-    public boolean freeColumn(Coordinates pos){
+    public boolean freeColumn(int col){
         int nbNull = 0;
         int row = 0;
-        while(nbNull==0 && row<4){
-            if(reserve[row][pos.getColumn()]==null){
+        while(nbNull==0 && row<5){
+            if(reserve[row][col]==null){
                 nbNull++;
             }
             row++;
@@ -118,14 +121,15 @@ public class Reserve {
     /**
      *Check if the row of the coordinate has at least one free case
      * where an animal can be placed
-     * @param pos the position with the row and the column
+     * 
+     * @param row the row of the position
      * @return true if the row has at least one free spot
      */
-    public boolean freeRow(Coordinates pos){
+    public boolean freeRow(int row){
         int nbNull = 0;
         int col = 0;
-        while(nbNull==0 && col<5){
-            if(reserve[pos.getRow()][col]==null){
+        while(nbNull==0 && col<6){
+            if(reserve[row][col]==null){
                 nbNull=nbNull+1;
             }
             col++;
@@ -135,6 +139,7 @@ public class Reserve {
     
     /**
      *Return a list of all case next to the position (up, down, left and right)
+     * 
      * @param pos the row and the column
      * @return the list of case next to the position
      */
@@ -165,6 +170,7 @@ public class Reserve {
     
     /**
      * check if the position given is on the border of the reserve
+     * 
      * @param pos the position that needs to be checked
      * @return true if it's on the border
      */
@@ -175,6 +181,7 @@ public class Reserve {
     
     /**
      * check if the position given is on the top side
+     * 
      * @param pos the position that needs to be checked
      * @return true if it's on top
      */
@@ -184,6 +191,7 @@ public class Reserve {
     
     /**
      * check if the position given is on the down side
+     * 
      * @param pos the position that needs to be checked
      * @return true if it's down side
      */
@@ -193,6 +201,7 @@ public class Reserve {
     
     /**
      * check if the position given is on the right side
+     * 
      * @param pos the position that needs to be checked
      * @return true if it's on the right
      */
@@ -202,6 +211,7 @@ public class Reserve {
     
     /**
      * check if the position given is on the left side
+     * 
      * @param pos the position that needs to be checked
      * @return true if it's on the left
      */

@@ -1,9 +1,9 @@
 package g43142.zebras.models;
 
-import java.util.Objects;
 
 /*
  * Coordinate's structure, with row and columns
+
  * @author dedec
  */
 
@@ -14,6 +14,7 @@ public class Coordinates {
     
      /**
      * Constructor of coordinates
+     * 
      * @param row the row of the case
      * @param column the column of the case
      */
@@ -24,6 +25,7 @@ public class Coordinates {
 
     /**
      * Getter of the value of the row
+     * 
      * @return the value of the row
      */
     public int getRow() {
@@ -32,6 +34,7 @@ public class Coordinates {
 
     /**
      * Getter of the value of the column
+     * 
      * @return the value of the column
      */
     public int getColumn() {
@@ -40,6 +43,7 @@ public class Coordinates {
 
     /**
      *Override of toString Method
+     * 
      * @return the row and column like this : [r][c]
      */
     @Override

@@ -47,6 +47,7 @@ public class Pieces {
 
     /**
      *Get an animal from the list, and remove it
+     * 
      * @param color the color of the animal
      * @param species the animal's specie
      * @return the animal that will be remove
@@ -64,6 +65,7 @@ public class Pieces {
 
     /**
      * check if the list is empty, meaning no animals in it
+     * 
      * @return true if it's empty
      */
     public boolean hasAvailable(){
@@ -72,6 +74,7 @@ public class Pieces {
     
     /**
      * get number of occurences of an animal in the list
+     * 
      * @param color the color of the animal
      * @param species the animal's specie
      * @return the number of animal left in the list
@@ -89,7 +92,8 @@ public class Pieces {
 
     /**
      *Override of toString Method
-     * @return string like : "pieces {animal}"
+     * 
+     * @return a new way of printing the stock
      */
     @Override
     public String toString() {
@@ -106,6 +110,7 @@ public class Pieces {
     
     /**
      * Simply put an animal at the end of the list
+     * 
      * @param animal that will be added
      */
     public void put(Animal animal){

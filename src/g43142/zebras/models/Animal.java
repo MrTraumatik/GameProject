@@ -1,9 +1,8 @@
 package g43142.zebras.models;
 
-import java.awt.Graphics;
-
 /*
  * Class for creating and changing attributs of animals
+ *
  * @author dedec
  */
 
@@ -14,6 +13,7 @@ public class Animal {
 
     /**
      * Constructor of an animal
+     * 
      * @param species the specie of the animal
      * @param color the color, to specify to which player the animal belongs
      */
@@ -24,6 +24,7 @@ public class Animal {
 
     /**
      * Getter of the specie
+     * 
      * @return the specie of the animal
      */
     public Species getSpecies() {
@@ -32,6 +33,7 @@ public class Animal {
 
     /**
      * Getter of the color
+     * 
      * @return the color of the animal
      */
     public Color getColor() {
@@ -59,6 +61,7 @@ public class Animal {
     /**
      *Override of toString Method
      * print in color de fisrt letter of an animal with his color
+     * 
      * @return string of the first char of the animal's name
      */
     @Override
@@ -75,6 +78,7 @@ public class Animal {
     
     /**
      *return the state of the animal (run, hidden, rest)
+     * 
      * @return the state of the animal
      */
     public AnimalState getState() {
@@ -83,6 +87,7 @@ public class Animal {
     
     /**
      * setter of the animal's state
+     * 
      * @param status that will be given to the animal
      */
     public void setState(AnimalState status){
@@ -92,6 +97,7 @@ public class Animal {
     /**
      *Interaction between animals:
      * a lion make gazelles run and zebras hide
+     * 
      * @param other the animal that will be put in the reserve
      */
     public void action(Animal other){

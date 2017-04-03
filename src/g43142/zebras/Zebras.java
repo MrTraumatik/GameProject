@@ -4,6 +4,7 @@
  */
 package g43142.zebras;
 
+import g43142.zebras.models.GameException;
 import g43142.zebras.models.Animal;
 import g43142.zebras.models.Color;
 import g43142.zebras.models.Coordinates;
@@ -15,7 +16,7 @@ import g43142.zebras.models.Species;
 
 public class Zebras {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws GameException {
         
         //instancie une reserve + place gazelle [2,4]     
         Reserve reserve = new Reserve();
@@ -59,15 +60,41 @@ public class Zebras {
       
         System.out.println(reserve);
         
-        System.out.println(reserve.freeColumn(new Coordinates(0, 2)));
-        
         ImpalaJones I = new ImpalaJones();
         I.init(0);
-        System.out.println("impala pos = " + I.getPosition());
-        //System.out.println("first move avalaible = " + I.findFirst(reserve));
         
-        //System.out.println(I.checkMove(reserve, 1));
+        reserve.put(autreAni, (new Coordinates(2, 0)));
+        reserve.put(autreAni, (new Coordinates(2, 1)));
+        reserve.put(autreAni, (new Coordinates(2, 2)));
+        reserve.put(autreAni, (new Coordinates(2, 3)));
+        reserve.put(autreAni, (new Coordinates(2, 4)));
+        reserve.put(autreAni, (new Coordinates(2, 0)));
+        reserve.put(unAnimal, new Coordinates(3, 1));
+        reserve.put(unAnimal, new Coordinates(3, 2));
+        reserve.put(unAnimal, new Coordinates(3, 3));
+        reserve.put(unAnimal, new Coordinates(3, 4));       
+        reserve.put(autreAni, (new Coordinates(3, 5)));
+        reserve.put(autreAni, (new Coordinates(4, 1)));
+        reserve.put(autreAni, (new Coordinates(4, 2)));
+        reserve.put(autreAni, (new Coordinates(4, 3)));
+        reserve.put(autreAni, (new Coordinates(4, 4)));
+        reserve.put(autreAni, (new Coordinates(4, 0)));
+        reserve.put(unAnimal, new Coordinates(1, 0));
+        reserve.put(unAnimal, new Coordinates(1, 2));
+        reserve.put(unAnimal, new Coordinates(1, 5));
+        reserve.put(unAnimal, new Coordinates(1, 4));
+        reserve.put(unAnimal, new Coordinates(4, 5));
+        reserve.put(unAnimal, new Coordinates(3, 5));
+        reserve.put(unAnimal, new Coordinates(3, 0));
+        //reserve.put(unAnimal, new Coordinates(2, 5));
 
+        
+        System.out.println(reserve);
+        I.init(6);
+        System.out.println("impala pos = " + I.getPosition());
+        System.out.println("check move: "+I.checkMove(reserve, 2));
+        System.out.println("first move avalaible = " + I.findFirst(reserve));
+        
         
           
         
