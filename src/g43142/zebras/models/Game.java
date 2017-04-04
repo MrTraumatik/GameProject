@@ -209,7 +209,10 @@ public class Game implements Model {
         boolean playerOne = true;
         Player p1 = new Player(Color.GREEN);
         Player p2 = new Player(Color.RED);
-        System.out.print("Where must Impala Jones start ? \nPlease enter the position : ");
+        System.out.println("*============*");
+        System.out.println("Drôle de Zèbres !");
+        System.out.println("*============*");
+        System.out.print("Where must Impala Jones start : ");
         int position = sc.nextInt();
         impala.init(position);
 
@@ -220,15 +223,144 @@ public class Game implements Model {
 
         while (!isOver()) {
             if (playerOne) {
-                currentPlayer= p1;
+                currentPlayer = p1;
                 turnActions();
             } else {
-                currentPlayer= p2;
+                currentPlayer = p2;
                 turnActions();
             }
             playerOne = !playerOne;
         }
 
+    }
+
+    /**
+     *
+     */
+    public void actionInitState() {
+
+        Scanner sc = new Scanner(System.in);
+        System.out.print("Initialisation of Impala : ");
+        int pos = sc.nextInt();
+        impala.init(pos);
+        System.out.println(View.viewStock(pieces));
+        System.out.println(View.viewReserve(reserve));
+    }
+
+    /**
+     *
+     * @throws GameException
+     */
+    public void actionAnimalState() throws GameException {
+
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Which animal do you want to place ? ");
+        String s = sc.next();
+
+        Species specie = null;
+        if (isGazelle(s)) {
+            specie = Species.GAZELLE;
+        } else if (isCrocodile(s)) {
+            specie = Species.CROCODILE;
+        } else if (isElephant(s)) {
+            specie = Species.ELEPHANT;
+        } else if (isLion(s)) {
+            specie = Species.LION;
+        } else if (isZebre(s)) {
+            specie = Species.ZEBRA;
+        } else {
+            System.out.println("Try again");
+            //something to repeat ....
+        }
+
+        Color color = getCurrentColor();
+        Animal animal;
+        if (specie == null) {
+            throw new GameException();
+        } else {
+            animal = new Animal(specie, color);
+        }
+
+        int row, col;
+        System.out.println("Where does the " + animal
+                + " needs to be placed ? ");
+        if (impala.isUp() || impala.isDown()) {
+            System.out.print("row : ");
+            row = sc.nextInt();
+            col = impala.getColumn();
+        } else {
+            System.out.print("column : ");
+            col = sc.nextInt();
+            row = impala.getRow();
+        }
+        Coordinates coord = new Coordinates(row, col);
+        reserve.put(animal, coord);
+        System.out.println(View.viewStock(pieces));
+        System.out.println(View.viewReserve(reserve));
+    }
+
+    /**
+     *
+     */
+    public void actionImpalaState() {
+
+        Scanner sc = new Scanner(System.in);
+        System.out.println("last step of the round : Move Impala");
+        System.out.println("(reminder, Impala can only do 3steps max");
+        System.out.print("next position : ");
+        int pos = sc.nextInt();
+        /*
+        while (!sc.hasNextInt() || pos < 0 || pos > 3) {
+            System.out.println("Try again, wrong number...");
+            pos = sc.nextInt();
+        }
+        */
+        impala.move(pos);
+
+        System.out.println(View.viewStock(pieces));
+        System.out.println(View.viewReserve(reserve));
+    }
+
+    /**
+     *
+     */
+    public void newStatus() {
+
+        Scanner sc = new Scanner(System.in);
+        System.out.print("enter new game status : ");
+        int stat = sc.nextInt();
+        //intToStat(stat);
+        if (stat == 1) {
+            status = status.INIT;
+        } else if (stat == 2) {
+            status = status.ANIMAL;
+        } else if (stat == 3) {
+            status = status.IMPALA;
+        } else {
+            System.out.println("wrong game status");
+        }
+    }
+
+    /**
+     *
+     * @throws GameException
+     */
+    public void turnActions() throws GameException {
+        System.out.println(View.viewStock(pieces));
+        System.out.println(View.viewReserve(reserve));
+
+        if (status == status.INIT) {
+            actionInitState();
+        }
+        newStatus();
+        if (status == status.ANIMAL) {
+            actionAnimalState();
+        }
+        newStatus();
+        if (status == status.IMPALA) {
+            actionImpalaState();
+        }
+        newStatus();
     }
 
     /**
@@ -359,135 +491,6 @@ public class Game implements Model {
             gs = status.IMPALA;
         }
         return gs;
-    }
-
-    /**
-     *
-     */
-    public void actionInitState() {
-
-        Scanner sc = new Scanner(System.in);
-        System.out.print("Initialisation of Impala : ");
-        int pos = sc.nextInt();
-        impala.init(pos);
-        System.out.println(View.viewStock(pieces));
-        System.out.println(View.viewReserve(reserve));
-    }
-
-    /**
-     *
-     * @throws GameException
-     */
-    public void actionAnimalState() throws GameException {
-
-        Scanner sc = new Scanner(System.in);
-        System.out.println("Which animal do you want to place ? ");
-        String s = sc.next();
-
-        Species specie = null;
-        if (isGazelle(s)) {
-            specie = Species.GAZELLE;
-        } else if (isCrocodile(s)) {
-            specie = Species.CROCODILE;
-        } else if (isElephant(s)) {
-            specie = Species.ELEPHANT;
-        } else if (isLion(s)) {
-            specie = Species.LION;
-        } else if (isZebre(s)) {
-            specie = Species.ZEBRA;
-        } else {
-            System.out.println("Try again");
-            //something to repeat ....
-        }
-
-        Color color = getCurrentColor();
-        Animal animal;
-        if (specie == null) {
-            throw new GameException();
-        } else {
-            animal = new Animal(specie, color);
-        }
-
-        int row, col;
-        System.out.println("Where does the " + animal
-                + " needs to be placed ? ");
-        if (impala.isUp() || impala.isDown()) {
-            System.out.print("row : ");
-            row = sc.nextInt();
-            col = impala.getColumn();
-        } else {
-            System.out.print("column : ");
-            col = sc.nextInt();
-            row = impala.getRow();
-        }
-        Coordinates coord = new Coordinates(row, col);
-        reserve.put(animal, coord);
-        System.out.println(View.viewStock(pieces));
-        System.out.println(View.viewReserve(reserve));
-    }
-
-    /**
-     *
-     */
-    public void actionImpalaState() {
-
-        Scanner sc = new Scanner(System.in);
-        System.out.println("last step of the round : Move Impala");
-        System.out.println("(reminder, Impala can only do 3steps max");
-        System.out.print("next position : ");
-        int pos = sc.nextInt();
-
-        while (!sc.hasNextInt() || pos < 0 || pos > 3) {
-            System.out.println("Try again, wrong number...");
-            pos = sc.nextInt();
-        }
-
-        impala.move(pos);
-
-        System.out.println(View.viewStock(pieces));
-        System.out.println(View.viewReserve(reserve));
-    }
-
-    /**
-     *
-     */
-    public void newStatus() {
-
-        Scanner sc = new Scanner(System.in);
-        System.out.print("enter new game status : ");
-        int stat = sc.nextInt();
-        //intToStat(stat);
-        if (stat == 1) {
-            status = status.INIT;
-        }else if (stat == 2) {
-            status = status.ANIMAL;
-        } else if(stat==3){
-            status = status.IMPALA;
-        }else{
-            System.out.println("wrong game status");
-        }
-    }
-
-    /**
-     *
-     * @throws GameException
-     */
-    public void turnActions() throws GameException {
-        System.out.println(View.viewStock(pieces));
-        System.out.println(View.viewReserve(reserve));
-
-        if (status == status.INIT) {
-            actionInitState();
-        }
-        newStatus();
-        if (status == status.ANIMAL) {
-            actionAnimalState();
-        }
-        newStatus();
-        if (status == status.IMPALA) {
-            actionImpalaState();
-        }
-        newStatus();
     }
 
 }
