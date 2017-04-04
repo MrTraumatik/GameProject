@@ -6,12 +6,11 @@ package g43142.zebras.models;
  * Red for player 2
  * @author dedec
  */
-
 public enum Color {
     /**
      * the player 1
      */
-    GREEN, 
+    GREEN,
     /**
      * the player 2
      */

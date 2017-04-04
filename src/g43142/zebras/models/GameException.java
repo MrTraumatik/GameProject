@@ -1,12 +1,9 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package g43142.zebras.models;
 
 /**
- *
+ * Exception class for the game. Will be use if an error happens because
+ * of a game related problem (board game is full, no more animals ...).
+ * 
  * @author dedec
  */
 public class GameException extends Exception {

@@ -1,17 +1,5 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package g43142.zebras.models;
 
-import g43142.zebras.models.Color;
-import g43142.zebras.models.Coordinates;
-import g43142.zebras.models.GameStatus;
-import g43142.zebras.models.ImpalaJones;
-import g43142.zebras.models.Player;
-import g43142.zebras.models.Reserve;
-import g43142.zebras.models.Species;
 import java.util.List;
 
 /**
@@ -31,6 +19,7 @@ public interface Model {
      * Set Impala Jones first position.
      *
      * @param position of Impala Jones at the beginning of game
+     * @throws GameException
      */
     void setImpalaJonesFirstPosition(int position) throws GameException;
 
@@ -40,6 +29,7 @@ public interface Model {
      *
      * @param position position on the board
      * @param species species of an animal
+     * @throws GameException
      */
     void putAnimal(Coordinates position, Species species) throws GameException;
 
@@ -115,7 +105,7 @@ public interface Model {
      * @return the score of the player of the given color.
      */
     int getScore(Color color);
-    
+
     //pas bon
     //void exception()throws GameException;
 }

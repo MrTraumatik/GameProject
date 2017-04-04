@@ -1,7 +1,9 @@
 package g43142.zebras.models;
 
 /**
- * Creation of Impala Jones
+ * Creation of Impala Jones. He moves around the board game by 3 position max.
+ * The position must be between 0 and 21. Impala must be next to the row or 
+ * the column where he wants to put an animal.
  *
  * @author Richard
  */
@@ -47,11 +49,33 @@ public class ImpalaJones {
      * @param distance the distance to his new position
      */
     public void move(int distance) {
+        
         position = position + distance;
+        
+        if (position > 21) {
+            if (position == 22) {
+                position = 0;
+            }
+            if (position == 23) {
+                position = 1;
+            }
+            if (position == 24) {
+                position = 2;
+            }
+            if (position == 25) {
+                position = 3;
+            }
+            if (position == 26) {
+                position = 4;
+            }
+            if (position == 27) {
+                position = 5;
+            }
+        }
     }
 
     /**
-     * check if impala is on the top side
+     * Check if impala is on the top side
      *
      * @return true if impala is upside
      */
@@ -60,7 +84,7 @@ public class ImpalaJones {
     }
 
     /**
-     * check if impala is on the down side
+     * Check if impala is on the down side
      *
      * @return true if impala is downside
      */
@@ -69,7 +93,7 @@ public class ImpalaJones {
     }
 
     /**
-     * check if impala is on the right side
+     * Check if impala is on the right side
      *
      * @return true if impala is on the right
      */
@@ -78,7 +102,7 @@ public class ImpalaJones {
     }
 
     /**
-     * check if impala is on the left side
+     * Check if impala is on the left side
      *
      * @return true if impala is on the left
      */
@@ -134,38 +158,38 @@ public class ImpalaJones {
     public boolean checkMove(Reserve reserve, int distance) {
         move(distance);
         int row = getRow();
-        int col= getColumn();
-       
+        int col = getColumn();
+
         if (position > 21) {
             if (position == 22) {
                 position = 0;
                 row = getRow();
-                col= getColumn();
+                col = getColumn();
             }
             if (position == 23) {
                 position = 1;
                 row = getRow();
-                col= getColumn();
+                col = getColumn();
             }
             if (position == 24) {
                 position = 2;
                 row = getRow();
-                col= getColumn();
+                col = getColumn();
             }
             if (position == 25) {
                 position = 3;
                 row = getRow();
-                col= getColumn();
+                col = getColumn();
             }
             if (position == 26) {
                 position = 4;
                 row = getRow();
-                col= getColumn();
+                col = getColumn();
             }
             if (position == 27) {
                 position = 5;
                 row = getRow();
-                col= getColumn();
+                col = getColumn();
             }
         }
         if (row == -1) {
@@ -178,7 +202,7 @@ public class ImpalaJones {
     }
 
     /**
-     * check if the position of impala is the same as the position in the
+     * Check if the position of impala is the same as the position in the
      * parameters
      *
      * @param pos the position where impala is supposed to be
@@ -194,15 +218,16 @@ public class ImpalaJones {
      *
      * @param reserve the reserve of animals
      * @return the first deplacement possible for impala
+     * @throws GameException if the board game is full
      */
-    public int findFirst(Reserve reserve) throws GameException{
+    public int findFirst(Reserve reserve) throws GameException {
 
         int move = 0;
-        while(!checkMove(reserve, move)){
-            if(move>9){
+        while (!checkMove(reserve, move)) {
+            if (move > 9) {
                 throw new GameException();
-            }else{
-                move++; 
+            } else {
+                move++;
             }
         }
         return move;

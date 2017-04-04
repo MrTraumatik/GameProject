@@ -7,11 +7,11 @@ import java.io.IOException;
 import java.util.Scanner;
 
 /**
- *The Game class assembles all the elements of the game already coded.
- *It acts as a facade, meaning that it is only with this class that the view 
- * will interact to evolve the game without calling directly the other classes
- * of the model.
- * 
+ * The Game class assembles all the elements of the game already coded. It acts
+ * as a facade, meaning that it is only with this class that the view will
+ * interact to evolve the game without calling directly the other classes of the
+ * model.
+ *
  * @author dedec
  */
 public class Game implements Model {
@@ -25,9 +25,9 @@ public class Game implements Model {
 
     /**
      * Constructor of a game of "Drôle de Zèbres"
-     * 
+     *
      * @param players list of players of the game
-     * @param reserve the board game 
+     * @param reserve the board game
      * @param impala Impala Jones
      * @param pieces list of all animals avalaible
      * @param status the game status
@@ -46,6 +46,7 @@ public class Game implements Model {
     /**
      * Start a match and reset attributes.
      */
+    @Override
     public void start() {
         players = new ArrayList<>();
         reserve = new Reserve();
@@ -60,7 +61,8 @@ public class Game implements Model {
      * @param position of Impala Jones at the beginning of game
      * @throws GameException if game's status isn't GameStatus.INIT.
      */
-    public void setImpalaJonesFirstPosition(int position) throws GameException{
+    @Override
+    public void setImpalaJonesFirstPosition(int position) throws GameException {
         if (this.status != status.INIT) {
             throw new GameException();
         } else {
@@ -78,6 +80,7 @@ public class Game implements Model {
      * isn't on the same row or column or that the position is not free or the
      * current player doesn't have that a tile of that species to play anymore
      */
+    @Override
     public void putAnimal(Coordinates position, Species species) throws GameException {
         Color color = currentPlayer.getColor();
         if (this.status != status.ANIMAL || !impala.valid(position)
@@ -96,6 +99,7 @@ public class Game implements Model {
      * @throws GameException if game's status isn't Status.IMPALA or impala will
      * arrive on a full row or column or the distance is too large
      */
+    @Override
     public void moveImpalaJones(int distance) throws GameException {
         if (this.status != status.IMPALA || !impala.checkMove(reserve, distance)
                 || impala.findFirst(reserve) > 3) {
@@ -110,6 +114,7 @@ public class Game implements Model {
      *
      * @return true if the game is over
      */
+    @Override
     public boolean isOver() {
         int col = 0;
         boolean itsOK = true;
@@ -126,6 +131,7 @@ public class Game implements Model {
      *
      * @return the state of the game
      */
+    @Override
     public GameStatus getStatus() {
         return status;
     }
@@ -135,6 +141,7 @@ public class Game implements Model {
      *
      * @return the current player
      */
+    @Override
     public Color getCurrentColor() {
         return currentPlayer.getColor();
     }
@@ -144,6 +151,7 @@ public class Game implements Model {
      *
      * @return the list of all player
      */
+    @Override
     public List<Player> getPlayers() {
         return players;
     }
@@ -153,6 +161,7 @@ public class Game implements Model {
      *
      * @return the reserve
      */
+    @Override
     public Reserve getReserve() {
         return reserve;
     }
@@ -165,6 +174,7 @@ public class Game implements Model {
      * @return the amount of animals of the specified species for the current
      * player, left in the stock.
      */
+    @Override
     public int getNb(Species species) {
         return pieces.getNbAnimal(currentPlayer.getColor(), species);
     }
@@ -174,6 +184,7 @@ public class Game implements Model {
      *
      * @return impala jones
      */
+    @Override
     public ImpalaJones getImpalaJones() {
         return impala;
     }
@@ -193,31 +204,40 @@ public class Game implements Model {
      *
      * @param game
      * @throws GameException
-     * @throws IOException
      */
-    public void play(Model game) throws GameException, IOException {
+    public void play(Model game) throws GameException {
         System.out.print("Where must Impala Jones start ? \nPlease enter the position : ");
         Scanner sc = new Scanner(System.in);
         int position = sc.nextInt();
-        ImpalaJones imp = new ImpalaJones();
-        imp.init(position);
+        impala.init(position);
 
         System.out.println("What's the game status ?");
         System.out.println("1 : INIT\n2 : ANIMAL\n3 : IMPALA");
         int stat = sc.nextInt();
         intToStat(stat);
 
-        while (!game.isOver()) {
+        while (!isOver()) {
             System.out.println(View.viewStock(pieces));
             System.out.println(View.viewReserve(reserve));
 
             if (status == status.INIT) {
                 System.out.print("Initialisation of Impala : ");
                 int pos = sc.nextInt();
-                imp.init(pos);
-                System.out.print("enter new game status : ");
-                stat = sc.nextInt();
-                intToStat(stat);
+                impala.init(pos);
+                System.out.println(View.viewStock(pieces));
+                System.out.println(View.viewReserve(reserve));
+
+            }
+            System.out.print("enter new game status : ");
+            stat = sc.nextInt();
+            //intToStat(stat);
+            if (stat == 1) {
+                status = status.INIT;
+            }
+            if (stat == 2) {
+                status = status.ANIMAL;
+            } else {
+                status = status.IMPALA;
             }
 
             if (status == status.ANIMAL) {
@@ -227,20 +247,17 @@ public class Game implements Model {
                 Species specie = null;
                 if (isGazelle(s)) {
                     specie = Species.GAZELLE;
-                }
-                if (isCrocodile(s)) {
+                }else if (isCrocodile(s)) {
                     specie = Species.CROCODILE;
-                }
-                if (isElephant(s)) {
+                }else if (isElephant(s)) {
                     specie = Species.ELEPHANT;
-                }
-                if (isLion(s)) {
+                }else if (isLion(s)) {
                     specie = Species.LION;
-                }
-                if (isZebre(s)) {
+                }else if (isZebre(s)) {
                     specie = Species.ZEBRA;
-                } else {
+                }else {
                     System.out.println("Try again");
+                    //something to repeat ....
                 }
 
                 Color color = getCurrentColor();
@@ -251,20 +268,35 @@ public class Game implements Model {
                     animal = new Animal(specie, color);
                 }
 
-                System.out.println("Where does the" + animal + "needs to be placed ? ");
-                System.out.print("row : ");
-                int row = sc.nextInt();
-                System.out.print("column : ");
-                int col = sc.nextInt();
+                int row, col;
+                System.out.println("Where does the " + animal +
+                        " needs to be placed ? ");
+                if(impala.isUp()||impala.isDown()){
+                    System.out.print("row : ");
+                    row = sc.nextInt();
+                    col=impala.getColumn();
+                }else{
+                    System.out.print("column : ");
+                    col = sc.nextInt();
+                    row=impala.getRow();
+                }
                 Coordinates coord = new Coordinates(row, col);
-
                 reserve.put(animal, coord);
+                System.out.println(View.viewStock(pieces));
+                System.out.println(View.viewReserve(reserve));
 
-                System.out.print("enter new game status : ");
-                stat = sc.nextInt();
-                intToStat(stat);
             }
-
+            System.out.print("enter new game status : ");
+            stat = sc.nextInt();
+            //intToStat(stat);
+            if (stat == 1) {
+                status = status.INIT;
+            }
+            if (stat == 2) {
+                status = status.ANIMAL;
+            } else {
+                status = status.IMPALA;
+            }
             if (status == status.IMPALA) {
                 System.out.println("last step of the round : Move Impala");
                 System.out.println("(reminder, Impala can only do 3steps max");
@@ -276,13 +308,24 @@ public class Game implements Model {
                     pos = sc.nextInt();
                 }
 
-                imp.move(pos);
-
-                System.out.print("enter new game status : ");
-                stat = sc.nextInt();
-                intToStat(stat);
+                impala.move(pos);
+                
+                System.out.println(View.viewStock(pieces));
+                System.out.println(View.viewReserve(reserve));
 
             }
+            System.out.print("enter new game status : ");
+            stat = sc.nextInt();
+            //intToStat(stat);
+            if (stat == 1) {
+                status = status.INIT;
+            }
+            if (stat == 2) {
+                status = status.ANIMAL;
+            } else {
+                status = status.IMPALA;
+            }
+            
 
         }
 
@@ -290,7 +333,7 @@ public class Game implements Model {
 
     /**
      * Check if the string entered by the player is supposed to be GAZELLE
-     * 
+     *
      * @param s the string entered by the player
      * @return true if it's supposed to be a gazelle
      */
@@ -313,7 +356,7 @@ public class Game implements Model {
 
     /**
      * Check if the string entered by the player is supposed to be ZEBRE
-     * 
+     *
      * @param s the string entered by the player
      * @return true if it's supposed to be a zebra
      */
@@ -336,7 +379,7 @@ public class Game implements Model {
 
     /**
      * Check if the string entered by the player is supposed to be ELEPHANT
-     * 
+     *
      * @param s the string entered by the player
      * @return true if it's supposed to be an elephant
      */
@@ -359,7 +402,7 @@ public class Game implements Model {
 
     /**
      * Check if the string entered by the player is supposed to be LION
-     * 
+     *
      * @param s the string entered by the player
      * @return true if it's supposed to be a lion
      */
@@ -378,7 +421,7 @@ public class Game implements Model {
 
     /**
      * Check if the string entered by the player is supposed to be CROCODILE
-     * 
+     *
      * @param s the string entered by the player
      * @return true if it's supposed to be a crocodile
      */
@@ -398,20 +441,23 @@ public class Game implements Model {
     }
 
     /**
-     *Convert : 1-2-3 into a game status : init-animal-impala, in the same order
-     * 
+     * Convert : 1-2-3 into a game status : init-animal-impala, in the same
+     * order
+     *
      * @param stat the number entered by the player
      * @return the game status
      */
     public GameStatus intToStat(int stat) {
+        GameStatus gs;
         if (stat == 1) {
-            return status.INIT;
+            gs = status.INIT;
         }
         if (stat == 2) {
-            return status.ANIMAL;
+            gs = status.ANIMAL;
         } else {
-            return status.IMPALA;
+            gs = status.IMPALA;
         }
+        return gs;
     }
 
 }

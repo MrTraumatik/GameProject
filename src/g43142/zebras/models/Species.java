@@ -6,31 +6,25 @@ package g43142.zebras.models;
  * of the animal to attract tourrists
  * @author dedec
  */
-
 public enum Species {
     /**
-     * Gazelle
-     * 6 pawns, value 2
+     * Gazelle 6 pawns, value 2
      */
-    GAZELLE, 
+    GAZELLE,
     /**
-     * Zebra
-     * 5 pawn, value 6
+     * Zebra 5 pawn, value 6
      */
-    ZEBRA, 
+    ZEBRA,
     /**
-     * Lion
-     * 1 pawn, value 1
+     * Lion 1 pawn, value 1
      */
-    LION, 
+    LION,
     /**
-     * Elephant
-     * 1 pawn, value 5
+     * Elephant 1 pawn, value 5
      */
-    ELEPHANT, 
+    ELEPHANT,
     /**
-     * Crocodile
-     * 2 pawns, value 0
+     * Crocodile 2 pawns, value 0
      */
     CROCODILE;
 }

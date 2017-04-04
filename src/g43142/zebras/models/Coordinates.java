@@ -6,15 +6,14 @@ package g43142.zebras.models;
 
  * @author dedec
  */
-
 public class Coordinates {
-    
+
     private final int ROW;
     private final int COLUMN;
-    
-     /**
+
+    /**
      * Constructor of coordinates
-     * 
+     *
      * @param row the row of the case
      * @param column the column of the case
      */
@@ -25,7 +24,7 @@ public class Coordinates {
 
     /**
      * Getter of the value of the row
-     * 
+     *
      * @return the value of the row
      */
     public int getRow() {
@@ -34,7 +33,7 @@ public class Coordinates {
 
     /**
      * Getter of the value of the column
-     * 
+     *
      * @return the value of the column
      */
     public int getColumn() {
@@ -42,13 +41,13 @@ public class Coordinates {
     }
 
     /**
-     *Override of toString Method
-     * 
+     * Override of toString Method
+     *
      * @return the row and column like this : [r][c]
      */
     @Override
     public String toString() {
-        return "[" +ROW + "][" + COLUMN + ']';
+        return "[" + ROW + "][" + COLUMN + ']';
     }
-  
+
 }
