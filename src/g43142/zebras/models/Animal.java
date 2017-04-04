@@ -5,6 +5,12 @@ package g43142.zebras.models;
  *
  * @author dedec
  */
+
+/**
+ *
+ * @author Richard
+ */
+
 public class Animal {
 
     private Species species;

@@ -29,7 +29,7 @@ public class View {
 
         return "\n  STOCK\n----------\n" + nbG + " Gazelle(s)\n"
                 + nbZ + " Zèbre(s)\n" + nbC + " Corcodile(s)\n"
-                + nbL + " Lion\n" + nbE + " Eléphant";
+                + nbL + " Lion\n" + nbE + " Eléphant\n";
     }
 
     /**
@@ -39,7 +39,7 @@ public class View {
      * @return a new string shapped like a table
      */
     public static String viewReserve(Reserve res) {
-        String chaine = "*--------------*\n     RESERVE\n";
+        String chaine = "*------------------*\n     RESERVE\n|| ";
 
         for (int i = 0; i < 5; i++) {
             for (int j = 0; j < 6; j++) {
@@ -52,7 +52,7 @@ public class View {
             }
             chaine = chaine + " ||\n|| ";
         }
-        chaine = chaine + "\n*--------------*";
+        chaine = chaine + "\n*------------------*";
         return chaine;
     }
 

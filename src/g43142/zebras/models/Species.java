@@ -6,6 +6,12 @@ package g43142.zebras.models;
  * of the animal to attract tourrists
  * @author dedec
  */
+
+/**
+ *
+ * @author Richard
+ */
+
 public enum Species {
     /**
      * Gazelle 6 pawns, value 2

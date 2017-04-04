@@ -6,6 +6,12 @@ package g43142.zebras.models;
  * Red for player 2
  * @author dedec
  */
+
+/**
+ *
+ * @author Richard
+ */
+
 public enum Color {
     /**
      * the player 1

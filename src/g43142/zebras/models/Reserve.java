@@ -10,6 +10,10 @@ package g43142.zebras.models;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ *
+ * @author Richard
+ */
 public class Reserve {
 
     static private final int NBROWS = 5;

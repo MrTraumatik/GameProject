@@ -21,14 +21,17 @@ import java.util.List;
 public class Zebras {
 
     public static void main(String[] args) throws GameException {
-
+        starting();
+    }
+    
+    public static void starting()throws GameException{
         Reserve reserve = new Reserve();
         ImpalaJones impala = new ImpalaJones();
         Pieces pieces = new Pieces();
         List<Player> players = new ArrayList();
         Player currentPlayer = new Player(Color.GREEN);
-        Game game = new Game(players, reserve, impala, pieces, GameStatus.INIT, currentPlayer);
-        
+        Game game = new Game(players, reserve, impala, pieces,
+                GameStatus.INIT, currentPlayer);
         game.play(game);
     }
 
