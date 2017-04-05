@@ -200,26 +200,26 @@ public class Game implements Model {
     }
 
     /**
+     * Interactions with the players are made here : changing turns ; placing
+     * animals etc...
      *
-     * @param game
-     * @throws GameException
+     * @param game the model with all the parameters needed to play
+     * @throws GameException if a problem occurs while playing
      */
     public void play(Model game) throws GameException {
         Scanner sc = new Scanner(System.in);
         boolean playerOne = true;
         Player p1 = new Player(Color.GREEN);
         Player p2 = new Player(Color.RED);
-        System.out.println("*============*");
-        System.out.println("Drôle de Zèbres !");
-        System.out.println("*============*");
+        System.out.println("*============*\nDrôle de Zèbres !\n*============*");
         System.out.print("Where must Impala Jones start : ");
         int position = sc.nextInt();
-        impala.init(position);
 
         System.out.println("What's the game status ?");
         System.out.println("1 : INIT\n2 : ANIMAL\n3 : IMPALA");
         int stat = sc.nextInt();
         intToStat(stat);
+        setImpalaJonesFirstPosition(position);
 
         while (!isOver()) {
             if (playerOne) {
@@ -235,6 +235,7 @@ public class Game implements Model {
     }
 
     /**
+     * Actions that need to be made while the game status is INIT
      *
      */
     public void actionInitState() {
@@ -248,8 +249,11 @@ public class Game implements Model {
     }
 
     /**
+     * Actions that need to be made while the game status is ANIMAL Player must
+     * place an animal from his stock on the reserve (conditions are in method :
+     * putAnimal)
      *
-     * @throws GameException
+     * @throws GameException if the player can't put the animal
      */
     public void actionAnimalState() throws GameException {
 
@@ -278,7 +282,7 @@ public class Game implements Model {
         if (specie == null) {
             throw new GameException();
         } else {
-            animal = new Animal(specie, color);
+            animal = pieces.getAnimal(color, specie);
         }
 
         int row, col;
@@ -294,15 +298,18 @@ public class Game implements Model {
             row = impala.getRow();
         }
         Coordinates coord = new Coordinates(row, col);
-        reserve.put(animal, coord);
+        putAnimal(coord, specie);
         System.out.println(View.viewStock(pieces));
         System.out.println(View.viewReserve(reserve));
     }
 
     /**
+     * Actions that need to be made while the game status is IMPALA The player
+     * must move Impala (condition of the movement are in movImpalaJones)
      *
+     * @throws GameException if the movement isn't possible
      */
-    public void actionImpalaState() {
+    public void actionImpalaState() throws GameException {
 
         Scanner sc = new Scanner(System.in);
         System.out.println("last step of the round : Move Impala");
@@ -314,14 +321,15 @@ public class Game implements Model {
             System.out.println("Try again, wrong number...");
             pos = sc.nextInt();
         }
-        */
-        impala.move(pos);
-
+         */
+        moveImpalaJones(pos);
         System.out.println(View.viewStock(pieces));
         System.out.println(View.viewReserve(reserve));
     }
 
     /**
+     * Change the status of the game by using numbers : 1 : INIT - 2 : ANIMAL -
+     * 3 : IMPALA
      *
      */
     public void newStatus() {
@@ -329,21 +337,24 @@ public class Game implements Model {
         Scanner sc = new Scanner(System.in);
         System.out.print("enter new game status : ");
         int stat = sc.nextInt();
-        //intToStat(stat);
-        if (stat == 1) {
-            status = status.INIT;
-        } else if (stat == 2) {
-            status = status.ANIMAL;
-        } else if (stat == 3) {
-            status = status.IMPALA;
-        } else {
-            System.out.println("wrong game status");
+        switch (stat) {
+            case 1:
+                status = status.INIT;
+                break;
+            case 2:
+                status = status.ANIMAL;
+                break;
+            case 3:
+                status = status.IMPALA;
+                break;
         }
     }
 
     /**
+     * Method to clarify when a specific action must be used Exemple : init
+     * state use the init actions, and not the animal actions
      *
-     * @throws GameException
+     * @throws GameException for animal actions or impala actions
      */
     public void turnActions() throws GameException {
         System.out.println(View.viewStock(pieces));

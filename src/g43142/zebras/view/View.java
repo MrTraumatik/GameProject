@@ -9,14 +9,14 @@ import g43142.zebras.models.Reserve;
 
 /**
  * View class to improve the prompting of the board game or the stock.
- * 
+ *
  * @author dedec
  */
 public class View {
 
     /**
      * Change the way a stock is printed
-     * 
+     *
      * @param piece the list of animal
      * @return a new string of how many animals are left in the list
      */
@@ -34,12 +34,12 @@ public class View {
 
     /**
      * Change the way the board game is printed
-     * 
+     *
      * @param res the reserve of animals
      * @return a new string shapped like a table
      */
     public static String viewReserve(Reserve res) {
-        String chaine = "*------------------*\n     RESERVE\n|| ";
+        String chaine = "         RESERVE\n*-------------------*\n| ";
 
         for (int i = 0; i < 5; i++) {
             for (int j = 0; j < 6; j++) {
@@ -49,10 +49,14 @@ public class View {
                 } else {
                     chaine = chaine + " -";
                 }
+                chaine = chaine + "|";
             }
-            chaine = chaine + " ||\n|| ";
+            chaine = chaine + " \n|------------------|\n| ";
         }
-        chaine = chaine + "\n*------------------*";
+        //if(chaine.endsWith("|")){
+        chaine = chaine.substring(0, chaine.length()-1);
+        //}
+        chaine = chaine + "\n*-------------------*";
         return chaine;
     }
 
