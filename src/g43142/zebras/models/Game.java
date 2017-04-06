@@ -84,7 +84,7 @@ public class Game implements Model {
         Color color = currentPlayer.getColor();
         if (this.status != status.ANIMAL || !impala.valid(position)
                 || !reserve.isFree(position) || pieces.getNbAnimal(color, species) == 0) {
-            throw new GameException();
+            throw new GameException("problem animal");
         } else {
             Animal animal = new Animal(species, color);
             reserve.put(animal, position);
@@ -333,7 +333,7 @@ public class Game implements Model {
      *
      */
     public void newStatus() {
-
+        /**
         Scanner sc = new Scanner(System.in);
         System.out.print("enter new game status : ");
         int stat = sc.nextInt();
@@ -348,6 +348,15 @@ public class Game implements Model {
                 status = status.IMPALA;
                 break;
         }
+        */
+        if(status==status.INIT){
+            status=status.ANIMAL;
+        }else if(status==status.ANIMAL){
+            status=status.IMPALA;
+        }else if(status==status.IMPALA){
+            status=status.INIT;
+        }
+        
     }
 
     /**
@@ -359,10 +368,11 @@ public class Game implements Model {
     public void turnActions() throws GameException {
         System.out.println(View.viewStock(pieces));
         System.out.println(View.viewReserve(reserve));
-
+        /**
         if (status == status.INIT) {
             actionInitState();
         }
+        * */
         newStatus();
         if (status == status.ANIMAL) {
             actionAnimalState();
