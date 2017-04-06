@@ -3,6 +3,7 @@ package g43142.zebras.view;
 import g43142.zebras.models.Animal;
 import g43142.zebras.models.Color;
 import g43142.zebras.models.Coordinates;
+import g43142.zebras.models.ImpalaJones;
 import g43142.zebras.models.Species;
 import g43142.zebras.models.Pieces;
 import g43142.zebras.models.Reserve;
@@ -39,7 +40,9 @@ public class View {
      * @return a new string shapped like a table
      */
     public static String viewReserve(Reserve res) {
-        String chaine = "         RESERVE\n*-------------------*\n| ";
+        char imp='I';
+        String chaine = "         RESERVE\n     .  .  .  .  .  .\n"
+                + "  *-------------------*\n. | ";
 
         for (int i = 0; i < 5; i++) {
             for (int j = 0; j < 6; j++) {
@@ -51,12 +54,12 @@ public class View {
                 }
                 chaine = chaine + "|";
             }
-            chaine = chaine + " \n|------------------|\n| ";
+            chaine = chaine + "  .\n  |------------------|  \n. | ";
         }
         //if(chaine.endsWith("|")){
-        chaine = chaine.substring(0, chaine.length()-1);
+        chaine = chaine.substring(0, chaine.length()-4);
         //}
-        chaine = chaine + "\n*-------------------*";
+        chaine = chaine + "    .  .  .  .  .  .\n";
         return chaine;
     }
 
