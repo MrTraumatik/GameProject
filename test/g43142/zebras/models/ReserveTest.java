@@ -169,6 +169,20 @@ public class ReserveTest {
         
         assertEquals(animal, result);
     }
+    
+    /**
+     * Test 3 of getAnimal method, of class Reserve.
+     * must return null because the coordinate is empty
+     */
+    @Test 
+    public void testGetAnimal3() {        
+        Coordinates pos = new Coordinates(0, 0);
+        Reserve instance = new Reserve();
+        Animal animal = null;
+        Animal result = instance.getAnimal(pos);
+        
+        assertEquals(animal, result);
+    }
 
     /**
      * Test of isInside method, of class Reserve.
