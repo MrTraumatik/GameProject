@@ -10,10 +10,6 @@ package g43142.zebras.models;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- *
- * @author Richard
- */
 public class Reserve {
 
     static private final int NBROWS = 5;
@@ -64,8 +60,8 @@ public class Reserve {
      * @return true if it's inside the reserve
      */
     public boolean isInside(Coordinates pos) {
-        return (pos.getColumn() > 0) && (pos.getColumn() < NBCOLS)
-                && (pos.getRow() > 0) && (pos.getRow() < NBROWS);
+        return (pos.getColumn() >= 0) && (pos.getColumn() < NBCOLS)
+                && (pos.getRow() >= 0) && (pos.getRow() < NBROWS);
     }
 
     /**

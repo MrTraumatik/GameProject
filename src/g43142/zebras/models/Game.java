@@ -63,7 +63,7 @@ public class Game implements Model {
     @Override
     public void setImpalaJonesFirstPosition(int position) throws GameException {
         if (this.status != status.INIT) {
-            throw new GameException();
+            throw new GameException("status is not INIT");
         } else {
             impala.init(position);
         }
@@ -102,7 +102,7 @@ public class Game implements Model {
     public void moveImpalaJones(int distance) throws GameException {
         if (this.status != status.IMPALA || !impala.checkMove(reserve, distance)
                 || impala.findFirst(reserve) > 3) {
-            throw new GameException();
+            throw new GameException("problem impala");
         } else {
             impala.move(distance);
         }
@@ -211,14 +211,18 @@ public class Game implements Model {
         boolean playerOne = true;
         Player p1 = new Player(Color.GREEN);
         Player p2 = new Player(Color.RED);
-        System.out.println("*============*\nDrôle de Zèbres !\n*============*");
+        System.out.println("*=============*\nDrôle de Zèbres !\n*=============*");
+        System.out.println("here's a reminder of the rules :");
+        System.out.println("https://elearning.esi.heb.be/courses/DEV2/document/projet/regles-ddz.pdf");
         System.out.print("Where must Impala Jones start : ");
         int position = sc.nextInt();
-
+        /**
         System.out.println("What's the game status ?");
         System.out.println("1 : INIT\n2 : ANIMAL\n3 : IMPALA");
         int stat = sc.nextInt();
         intToStat(stat);
+        */
+        status=status.INIT;
         setImpalaJonesFirstPosition(position);
 
         while (!isOver()) {
@@ -280,7 +284,7 @@ public class Game implements Model {
         Color color = getCurrentColor();
         Animal animal;
         if (specie == null) {
-            throw new GameException();
+            throw new GameException("no specie");
         } else {
             animal = pieces.getAnimal(color, specie);
         }
@@ -323,7 +327,7 @@ public class Game implements Model {
         }
          */
         moveImpalaJones(pos);
-        System.out.println(View.viewStock(pieces));
+        //System.out.println(View.viewStock(pieces));
         System.out.println(View.viewReserve(reserve));
     }
 

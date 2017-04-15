@@ -356,18 +356,45 @@ public class ImpalaJonesTest {
 
     /**
      * Test of findFirst method, of class ImpalaJones.
-     
+     * reserve is empty by default : the first move
+     * avalaible is 1 
+     * 
+     * @throws Exception throw a Game exception if the 
+     * reserve is full
+     */
     @Test
-    public void testFindFirst() {
-        System.out.println("findFirst");
-        Reserve reserve = null;
+    public void testFindFirst() throws Exception {
+        Reserve reserve = new Reserve();
         ImpalaJones instance = new ImpalaJones();
-        int expResult = 0;
+        instance.init(0);
+        int expResult = 1;
         int result = instance.findFirst(reserve);
         assertEquals(expResult, result);
-       
     }
-    */
+    
+    /**
+     * Test 2 of findFirst method, of class ImpalaJones.
+     * the column 1 is full : the first move avalaible is 2
+     * 
+     * @throws Exception throw a Game exception if the
+     * reserve is full
+     */
+    @Test
+    public void testFindFirst2() throws Exception {
+        Reserve reserve = new Reserve();
+        ImpalaJones instance = new ImpalaJones();
+        instance.init(0);
+        Animal animal = new Animal(Species.GAZELLE, Color.GREEN);
+        reserve.put(animal, new Coordinates(0, 1));
+        reserve.put(animal, new Coordinates(1, 1));
+        reserve.put(animal, new Coordinates(2, 1));
+        reserve.put(animal, new Coordinates(3, 1));
+        reserve.put(animal, new Coordinates(4, 1));
+        
+        int expResult = 2;
+        int result = instance.findFirst(reserve);
+        assertEquals(expResult, result);
+    }
     
     
 }
