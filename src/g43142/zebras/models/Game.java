@@ -320,20 +320,23 @@ public class Game implements Model {
         System.out.println("(reminder, Impala can only do 3steps max");
         System.out.print("next position : ");
         int pos = sc.nextInt();
-        /*
-        while (!sc.hasNextInt() || pos < 0 || pos > 3) {
+        
+        while (pos < 0 || pos > 3) {
             System.out.println("Try again, wrong number...");
             pos = sc.nextInt();
         }
-         */
+       
         moveImpalaJones(pos);
         //System.out.println(View.viewStock(pieces));
         System.out.println(View.viewReserve(reserve));
     }
 
     /**
-     * Change the status of the game by using numbers : 1 : INIT - 2 : ANIMAL -
-     * 3 : IMPALA
+     * Change the status of the game to the next one 
+     * Switch status like this :
+     * init becomes animal
+     * animal becomes impala
+     * impala becomes init
      *
      */
     public void newStatus() {
@@ -495,27 +498,6 @@ public class Game implements Model {
         return (s.equals(s1) || s.equals(s2) || s.equals(s3) || s.equals(s4)
                 || s.equals(s5) || s.equals(s6) || s.equals(s7) || s.equals(s8));
 
-    }
-
-    /**
-     * Convert : 1-2-3 into a game status : init-animal-impala, in the same
-     * order
-     *
-     * @param stat the number entered by the player
-     * @return the game status
-     */
-    public GameStatus intToStat(int stat) {
-
-        GameStatus gs;
-        if (stat == 1) {
-            gs = status.INIT;
-        }
-        if (stat == 2) {
-            gs = status.ANIMAL;
-        } else {
-            gs = status.IMPALA;
-        }
-        return gs;
     }
 
 }
