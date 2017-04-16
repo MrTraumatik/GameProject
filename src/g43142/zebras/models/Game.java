@@ -78,15 +78,22 @@ public class Game implements Model {
      * @throws GameException if game's status isn't Status.ANIMAL or impala
      * isn't on the same row or column or that the position is not free or the
      * current player doesn't have that a tile of that species to play anymore
+     * 
+     * || pieces.getNbAnimal(color, species) ==0
+     * condition bug 
+     * 
      */
     @Override
     public void putAnimal(Coordinates position, Species species) throws GameException {
         Color color = currentPlayer.getColor();
         if (this.status != status.ANIMAL || !impala.valid(position)
-                || !reserve.isFree(position) || pieces.getNbAnimal(color, species) == 0) {
+                || !reserve.isFree(position) || pieces.getNbAnimal(color, species)== 0 ) {
             throw new GameException("problem animal");
         } else {
-            Animal animal = new Animal(species, color);
+            
+            Animal animal = pieces.getAnimal(color, species);
+            
+            //Animal animal = new Animal(species, color);
             reserve.put(animal, position);
         }
     }
@@ -198,6 +205,22 @@ public class Game implements Model {
         //TODO 3eme remise
         return 0;
     }
+    
+    /**
+     * Reset color (black), use after printing with a color to get back to
+     * black.
+     */
+    public static final String ANSI_RESET = "\u001B[0m";
+
+    /**
+     * Red color code (ANSI)
+     */
+    public static final String ANSI_RED = "\u001B[31m";
+
+    /**
+     * Green color code (ANSI)
+     */
+    public static final String ANSI_GREEN = "\u001B[32m";
 
     /**
      * Interactions with the players are made here : changing turns ; placing
@@ -227,11 +250,17 @@ public class Game implements Model {
 
         while (!isOver()) {
             if (playerOne) {
+                System.out.println(ANSI_GREEN+"PLAYER GREEN TURN !"+ANSI_RESET);
                 currentPlayer = p1;
                 turnActions();
+                System.out.println(View.viewStockGREEN(pieces));
+                System.out.println(View.viewReserve(reserve));
             } else {
+                System.out.println(ANSI_RED+"PLAYER RED TURN !"+ANSI_RESET);
                 currentPlayer = p2;
                 turnActions();
+                System.out.println(View.viewStockRED(pieces));
+                System.out.println(View.viewReserve(reserve));
             }
             playerOne = !playerOne;
         }
@@ -248,8 +277,8 @@ public class Game implements Model {
         System.out.print("Initialisation of Impala : ");
         int pos = sc.nextInt();
         impala.init(pos);
-        System.out.println(View.viewStock(pieces));
-        System.out.println(View.viewReserve(reserve));
+        //System.out.println(View.viewStock(pieces));
+        //System.out.println(View.viewReserve(reserve));
     }
 
     /**
@@ -282,16 +311,20 @@ public class Game implements Model {
         }
 
         Color color = getCurrentColor();
+        /**
         Animal animal;
         if (specie == null) {
             throw new GameException("no specie");
         } else {
+            //problem ICI
+            //enleve l'animal en premier
+            //donc condition du putanimal bug car il y a 0 dans la liste !
             animal = pieces.getAnimal(color, specie);
         }
+        * */
 
         int row, col;
-        System.out.println("Where does the " + animal
-                + " needs to be placed ? ");
+        System.out.println("Where do you want to put it ? ");
         if (impala.isUp() || impala.isDown()) {
             System.out.print("row : ");
             row = sc.nextInt();
@@ -303,8 +336,11 @@ public class Game implements Model {
         }
         Coordinates coord = new Coordinates(row, col);
         putAnimal(coord, specie);
-        System.out.println(View.viewStock(pieces));
-        System.out.println(View.viewReserve(reserve));
+        
+        //pieces.getAnimal(color, specie);       
+        
+        //System.out.println(View.viewStock(pieces));
+        //System.out.println(View.viewReserve(reserve));
     }
 
     /**
@@ -328,7 +364,7 @@ public class Game implements Model {
        
         moveImpalaJones(pos);
         //System.out.println(View.viewStock(pieces));
-        System.out.println(View.viewReserve(reserve));
+        //System.out.println(View.viewReserve(reserve));
     }
 
     /**
@@ -373,8 +409,8 @@ public class Game implements Model {
      * @throws GameException for animal actions or impala actions
      */
     public void turnActions() throws GameException {
-        System.out.println(View.viewStock(pieces));
-        System.out.println(View.viewReserve(reserve));
+        //System.out.println(View.viewStock(pieces));
+        //System.out.println(View.viewReserve(reserve));
         /**
         if (status == status.INIT) {
             actionInitState();

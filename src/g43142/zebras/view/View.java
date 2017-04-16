@@ -21,14 +21,32 @@ public class View {
      * @param piece the list of animal
      * @return a new string of how many animals are left in the list
      */
-    public static String viewStock(Pieces piece) {
+    public static String viewStockGREEN(Pieces piece) {
         int nbG = piece.getNbAnimal(Color.GREEN, Species.GAZELLE);
         int nbZ = piece.getNbAnimal(Color.GREEN, Species.ZEBRA);
         int nbC = piece.getNbAnimal(Color.GREEN, Species.CROCODILE);
         int nbL = piece.getNbAnimal(Color.GREEN, Species.LION);
         int nbE = piece.getNbAnimal(Color.GREEN, Species.ELEPHANT);
 
-        return "\n  STOCK\n----------\n" + nbG + " Gazelle(s)\n"
+        return "\n STOCK GREEN\n-------------\n" + nbG + " Gazelle(s)\n"
+                + nbZ + " Zèbre(s)\n" + nbC + " Corcodile(s)\n"
+                + nbL + " Lion\n" + nbE + " Eléphant\n";
+    }
+    
+    /**
+     * Change the way a stock is printed
+     *
+     * @param piece the list of animal
+     * @return a new string of how many animals are left in the list
+     */
+    public static String viewStockRED(Pieces piece) {
+        int nbG = piece.getNbAnimal(Color.RED, Species.GAZELLE);
+        int nbZ = piece.getNbAnimal(Color.RED, Species.ZEBRA);
+        int nbC = piece.getNbAnimal(Color.RED, Species.CROCODILE);
+        int nbL = piece.getNbAnimal(Color.RED, Species.LION);
+        int nbE = piece.getNbAnimal(Color.RED, Species.ELEPHANT);
+
+        return "\n STOCK RED\n-------------\n" + nbG + " Gazelle(s)\n"
                 + nbZ + " Zèbre(s)\n" + nbC + " Corcodile(s)\n"
                 + nbL + " Lion\n" + nbE + " Eléphant\n";
     }
